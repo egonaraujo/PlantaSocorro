@@ -1,34 +1,67 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Plants/PlantController.gd" type="Script" id=1]
 [ext_resource path="res://BasicAssets/Circle.png" type="Texture" id=2]
+[ext_resource path="res://BasicAssets/Square.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 135.369
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 90.1705
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 23.7203, 63.1072 )
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 103.542
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 20.9611, 45.0773 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 25.8267, 52.8962 )
 
 [node name="Plant1" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.428064, 0.874428 )
 texture = ExtResource( 2 )
 
-[node name="Plant" type="Area2D" parent="Sprite"]
+[node name="Plant" type="Area2D" parent="."]
+scale = Vector2( 0.428064, 0.874428 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Plant"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plant"]
 shape = SubResource( 1 )
 
-[node name="Leaf" type="Area2D" parent="Sprite"]
+[node name="Leaves" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Leaf"]
-position = Vector2( 306.5, 150.596 )
+[node name="Leaf1" type="Sprite" parent="Leaves"]
+position = Vector2( -94.608, -85.0718 )
+rotation = -1.14493
+scale = Vector2( 0.1906, 0.4984 )
+texture = ExtResource( 3 )
+
+[node name="Leaf2" type="Sprite" parent="Leaves"]
+position = Vector2( 96.0552, 37.4544 )
+rotation = 0.271923
+scale = Vector2( 0.4338, 0.2058 )
+texture = ExtResource( 3 )
+
+[node name="Leaf3" type="Sprite" parent="Leaves"]
+position = Vector2( 31.4068, -138.434 )
+rotation = 0.429337
+scale = Vector2( 0.1602, 0.376077 )
+texture = ExtResource( 3 )
+
+[node name="Leaf" type="Area2D" parent="Leaves"]
+
+[node name="Leaf1Collider" type="CollisionShape2D" parent="Leaves/Leaf"]
+position = Vector2( -95.2981, -86.0923 )
+rotation = -1.13569
 shape = SubResource( 2 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite/Leaf"]
-position = Vector2( 114.772, 382.794 )
+[node name="Leaf2Collider" type="CollisionShape2D" parent="Leaves/Leaf"]
+position = Vector2( 31.075, -136.944 )
+rotation = 0.432561
 shape = SubResource( 3 )
+
+[node name="Leaf3Collider" type="CollisionShape2D" parent="Leaves/Leaf"]
+position = Vector2( 97.1767, 36.0056 )
+rotation = -1.30287
+shape = SubResource( 4 )

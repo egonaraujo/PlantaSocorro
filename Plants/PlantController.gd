@@ -28,7 +28,7 @@ func _input(event):
 													 2147483647, false,true)
 			var touchPlant = false
 			for dict in collidersTouched:
-				if (dict.collider == $Sprite/Plant):
+				if (dict.collider == $Plant):
 					touchPlant = true
 					break
 			if(touchPlant):
@@ -48,7 +48,7 @@ func _input(event):
 													 2147483647, false,true)
 		var slashedPlant = false
 		for dict in collidersTouched:
-			if (dict.collider == $Sprite/Leaf):
+			if (dict.collider == $Leaves/Leaf):
 				slashedPlant = true
 				break
 		if(slashedPlant && event.speed.length() > 700):

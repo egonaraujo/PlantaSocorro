@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 126.823
 
-[node name="Node2D" type="Node2D"]
+[node name="Tool1" type="Node2D"]
 script = ExtResource( 2 )
 toolID = 1
 
