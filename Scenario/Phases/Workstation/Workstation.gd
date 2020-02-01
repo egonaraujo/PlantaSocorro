@@ -8,7 +8,7 @@ func _ready():
 	$Tool3.connect("tool_selected", self, "selectTool")
 	
 	for c in $Plants.get_children():
-		pass
+		c.connect("plant_tapped",self,"tapPlant")
 		#c.connect()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,4 +17,7 @@ func _ready():
 
 
 func selectTool(var i):
-	pass
+	print("select tool %d"%i)
+
+func tapPlant():
+	print("tap")

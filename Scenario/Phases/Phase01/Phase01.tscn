@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenario/Phases/Phase01/Phase01.gd" type="Script" id=1]
-[ext_resource path="res://Tools/Tool1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Tools/Tool3.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Tools/Tool2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Tools/Tool0.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenario/Phases/Workstation/Workstation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenario/Phases/Controller/Controller.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Plants/Plant1/Plant1.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenario/Phases/Workstation.gd" type="Script" id=7]
 
 [node name="Phase01" type="Node"]
 script = ExtResource( 1 )
@@ -19,26 +16,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Workstation" type="Node2D" parent="."]
-script = ExtResource( 7 )
+[node name="Controller" parent="." instance=ExtResource( 3 )]
 
-[node name="Tool0" parent="Workstation" instance=ExtResource( 5 )]
-position = Vector2( 178.377, 304.625 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Workstation" parent="Controller" instance=ExtResource( 2 )]
+z_index = -1
 
-[node name="Tool1" parent="Workstation" instance=ExtResource( 2 )]
-position = Vector2( 175.288, 179.456 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Plant2" parent="Controller/Workstation/Plants" index="0" instance=ExtResource( 6 )]
+position = Vector2( 426.477, 267.517 )
 
-[node name="Tool2" parent="Workstation" instance=ExtResource( 4 )]
-position = Vector2( 637.113, 175.384 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Plant3" parent="Controller/Workstation/Plants" index="1" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 431.646, 257.178 )
 
-[node name="Tool3" parent="Workstation" instance=ExtResource( 3 )]
-position = Vector2( 644.443, 303.261 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Plant1" parent="Controller/Workstation/Plants" index="2" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 421.307, 250.716 )
 
-[node name="Plants" type="Node2D" parent="Workstation"]
+[editable path="Controller"]
 
-[node name="Plant1" parent="Workstation/Plants" instance=ExtResource( 6 )]
-position = Vector2( 421.053, 263.595 )
+[editable path="Controller/Workstation"]

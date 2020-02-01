@@ -1,6 +1,6 @@
 extends Control
 
-var _tabs = []
+var _tabs = ["","","",""]
 var _buffer = []
 
 var time_passed = 0;
@@ -25,21 +25,21 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time_passed = time_passed + delta
-	if time_passed > 90000: # one and a half minutes
+	if time_passed > 90: # one and a half minutes
 		emit_signal("lose_phase");
 	
-	var per_cent = (90000-time_passed)/90000
-	var rotation = 90*per_cent
-	get_node("ClockArrow").rect_rotation = rotation
-	print(time_passed)
+	var per_cent = 1-((90-time_passed)/90)
+	var rotation = 360*per_cent
+	$ClockArrow.rect_rotation = rotation
+
 
 func select_tab(i):
 	if _tabs[i] != "":
 		for tab in _tabs:
 			get_node(tab).hide()
 		get_node(_tabs[i]).show()
-		print_debug("Selecionei TAB: " + i)
-		# Ativa tab
+	print("Selecionei TAB: %d"%(i))
+		# Ativa tab 
 
 func _on_Tab4_pressed():
 	#for tab in _tabs:
