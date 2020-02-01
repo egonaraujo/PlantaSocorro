@@ -1,6 +1,6 @@
 extends Control
 
-var _tabs = ["","","",""]
+var _tabs = []
 var _buffer = []
 
 var time_passed = 0;
@@ -14,11 +14,15 @@ signal win_phase
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(true)
-	# Como ler as plantas de outra cena ???
-	# Ler plantas, colocar nas tabs
-	# Restante por no buffer
+	for plant in $Workstation/Plants.get_children():
+		_buffer.push_back("Workstation/Plants/%s" % plant.name)
+		plant.hide()
 	
-	#select_tab(i)
+	for i in range(0, 4):
+		_tabs.push_back(_buffer[0])
+		_buffer.pop_front()
+	
+	select_tab(0)
 	pass # Replace with function body.
 
 
