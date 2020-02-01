@@ -77,3 +77,4 @@ z_index = -1
 [connection signal="pressed" from="Tab2" to="." method="_on_Tab2_pressed"]
 [connection signal="pressed" from="Tab3" to="." method="_on_Tab3_pressed"]
 [connection signal="pressed" from="Tab4" to="." method="_on_Tab4_pressed"]
+[connection signal="plant_healthy" from="Workstation" to="." method="_on_Workstation_plant_healthy"]
