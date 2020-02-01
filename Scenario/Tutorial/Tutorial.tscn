@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenario/Tutorial/Tutorial.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/04B_03__.TTF" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 2 )
+
+[node name="Tutorial" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skip" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="Next" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 281.887
+margin_top = 243.715
+margin_right = 560.887
+margin_bottom = 315.715
+custom_fonts/font = SubResource( 1 )
+text = "Tutorial"
+[connection signal="pressed" from="Skip" to="." method="_on_Skip_pressed"]
+[connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
