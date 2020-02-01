@@ -16,22 +16,22 @@ __meta__ = {
 }
 
 [node name="Play" type="Button" parent="."]
-margin_left = 100.0
-margin_top = 200.0
-margin_right = 500.0
-margin_bottom = 300.0
+margin_left = 23.2875
+margin_top = 135.02
+margin_right = 423.287
+margin_bottom = 235.02
 
 [node name="Credits" type="Button" parent="."]
-margin_left = 100.0
-margin_top = 400.0
-margin_right = 500.0
-margin_bottom = 500.0
+margin_left = 22.385
+margin_top = 248.38
+margin_right = 422.385
+margin_bottom = 348.38
 
 [node name="Label" type="Label" parent="."]
-margin_left = 615.827
-margin_top = 72.3295
-margin_right = 795.827
-margin_bottom = 144.33
+margin_left = 299.952
+margin_top = 32.6195
+margin_right = 479.952
+margin_bottom = 104.62
 custom_fonts/font = SubResource( 1 )
 text = "MENU"
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]

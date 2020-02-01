@@ -27,7 +27,8 @@ func _process(delta):
 
 func update_plant(plant, status_id, increment):
 	plant.update_status(status_id, increment)
-	if plant.is_healthy():
+	if plant.is_healthy() && !plant.healthy_emmited:
+		plant.healthy_emmited = true;
 		emit_signal("plant_healthy", plant.name)
 
 
