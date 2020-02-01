@@ -20,8 +20,10 @@ margin_right = 12.0
 margin_bottom = 20.0
 
 [node name="Next" type="Button" parent="."]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_left = 519.73
+margin_top = 88.0898
+margin_right = 919.73
+margin_bottom = 188.09
 __meta__ = {
 "_edit_use_anchors_": false
 }

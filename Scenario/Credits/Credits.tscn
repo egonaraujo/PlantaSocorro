@@ -16,10 +16,10 @@ __meta__ = {
 }
 
 [node name="Return" type="Button" parent="."]
-margin_left = 1092.31
-margin_top = 14.6816
-margin_right = 1492.31
-margin_bottom = 114.682
+margin_left = 579.335
+margin_top = 39.9101
+margin_right = 979.335
+margin_bottom = 139.91
 __meta__ = {
 "_edit_use_anchors_": false
 }
