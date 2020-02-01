@@ -2,9 +2,10 @@ extends Node2D
 
 signal plant_healthy
 
-export (float) var increment = 1.0
 
-var whichTool = -1;
+var whichTool = -1
+var isHolding = 0
+var whichPlant = null;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Tool0.connect("tool_selected", self, "selectTool")
@@ -20,22 +21,34 @@ func _ready():
 		#c.connect()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if(isHolding == 1 && whichPlant != null):
+		update_plant(whichPlant,whichTool, delta)
 
-func update_plant(plant, status_id):
-	plant.update(status_id, increment)
+func update_plant(plant, status_id, increment):
+	plant.update_status(status_id, increment)
 	if plant.is_healthy():
 		emit_signal("plant_healthy", plant.name)
 
 
 func selectTool(var i):
-	print("select tool %d"%i)
+	whichTool=i;
 
-func tapPlant(plant_name):
+func tapPlant(plantNode):
 	if(whichTool == 0):
-		plant_name
-	#update_plant(get_node(plant_name), 1)
-	emit_signal("plant_healthy", plant_name)
+		update_plant(plantNode,whichTool,1)
+			
+func slashPlant(plantNode):
+	if(whichTool == 1):
+		print("Slash")
+		update_plant(plantNode,whichTool,1)
 
-	
+func holdPlant(plantNode):
+	if(whichTool == 2 || whichTool == 3):
+		isHolding =1
+		whichPlant = plantNode
+
+func releasePlant(plantNode):
+	if(whichTool == 2 || whichTool == 3):
+		isHolding =0
+		whichPlant = null

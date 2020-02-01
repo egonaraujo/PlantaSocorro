@@ -1,9 +1,10 @@
 extends Node2D
 
-export (float)var status1 = 10;
-export (float)var status2 = 10;
-export (float)var status3 = 10;
-
+export (float)var status0 = 0;
+export (float)var status1 = 0;
+export (float)var status2 = 0;
+export (float)var status3 = 0;
+export (float)var healthy_limit0 = 10;
 export (float)var healthy_limit1 = 10;
 export (float)var healthy_limit2 = 10;
 export (float)var healthy_limit3 = 10;
@@ -36,15 +37,13 @@ func _input(event):
 					touchPlant = true
 					break
 			if(touchPlant):
-				print("Tap Plant")
 				isHolding = true
-				emit_signal("plant_hold_down", $".".name)
-				emit_signal("plant_tapped", $".".name)
+				emit_signal("plant_hold_down", $".")
+				emit_signal("plant_tapped", $".")
 		if(!event.is_pressed() && isHolding):
 			isHolding=false
-			emit_signal("plant_hold_up", $".".name)
+			emit_signal("plant_hold_up", $".")
 			var point = event.position
-			print("Tap up Plant")
 	if( event is InputEventScreenDrag):
 		var point = event.position
 		var space_state = get_world_2d().direct_space_state
@@ -55,20 +54,25 @@ func _input(event):
 			if (dict.collider == $Leaves/Leaf):
 				slashedPlant = true
 				break
-		if(slashedPlant && event.speed.length() > 700):
-			emit_signal("plant_slash", $".".name)
-			print("Slash Plant")
+		if(slashedPlant && event.speed.length() > 500):
+			emit_signal("plant_slash", $".")
+
 
 func is_healthy():
-	return status1 > healthy_limit1 && status2 > healthy_limit2 && status3 > healthy_limit3
+	return status0 > healthy_limit0\
+		   && status1 > healthy_limit1\
+		   && status2 > healthy_limit2\
+		   && status3 > healthy_limit3
 
 func update_status(status_id, increment):
-	if status_id == 1:
-		status1  = status1 + increment
+	if status_id == 0:
+		status0 += increment
+	elif status_id == 1:
+		status1 += increment
 	elif status_id == 2:
-		status2  = status2 + increment
-	elif status_id == 2:
-		status3  = status3 + increment
+		status2 += increment
+	elif status_id == 3:
+		status3 += increment
 	pass
 
 func disable():

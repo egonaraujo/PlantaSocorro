@@ -20,26 +20,55 @@ __meta__ = {
 [node name="Plant1" parent="Controller/Workstation/Plants" index="0" instance=ExtResource( 6 )]
 position = Vector2( 413.553, 245.547 )
 rotation = 0.654195
+healthy_limit0 = 20.0
+healthy_limit1 = 5.0
+healthy_limit2 = 2.0
+healthy_limit3 = 2.0
 
 [node name="Plant2" parent="Controller/Workstation/Plants" index="1" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 413.553, 245.547 )
 rotation = 1.25908
+healthy_limit0 = 20.0
+healthy_limit1 = 5.0
+healthy_limit2 = 2.0
+healthy_limit3 = 2.0
 
 [node name="Plant3" parent="Controller/Workstation/Plants" index="2" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 413.553, 245.547 )
 rotation = 1.86216
+healthy_limit0 = 20.0
+healthy_limit1 = 5.0
+healthy_limit2 = 2.0
+healthy_limit3 = 2.0
 
 [node name="Plant4" parent="Controller/Workstation/Plants" index="3" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 413.553, 245.547 )
 rotation = 2.37212
+healthy_limit0 = 20.0
+healthy_limit1 = 5.0
+healthy_limit2 = 2.0
+healthy_limit3 = 2.0
 
 [node name="Plant5" parent="Controller/Workstation/Plants" index="4" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 413.553, 245.547 )
 rotation = 2.9172
+healthy_limit0 = 20.0
+healthy_limit1 = 4.0
+healthy_limit2 = 2.0
+healthy_limit3 = 2.0
 
 [node name="Plant6" parent="Controller/Workstation/Plants" index="5" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 413.553, 245.547 )
 rotation = -2.95207
+healthy_limit0 = 20.0
+healthy_limit1 = 5.0
+healthy_limit2 = 2.0
+healthy_limit3 = 2.0
 
 [editable path="Controller"]
 
