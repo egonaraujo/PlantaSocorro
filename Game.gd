@@ -9,8 +9,9 @@ func _ready() -> void:
 	update_touches_label()
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch and event.is_pressed():
+func _input(event: InputEvent):
+	if (event is InputEventScreenTouch and event.is_pressed()) \
+	or (event is InputEventMouseButton and event.is_pressed()):
 		touch_count += 1
 		update_touches_label()
 
