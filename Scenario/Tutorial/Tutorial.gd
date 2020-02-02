@@ -92,3 +92,26 @@ func _on_Next_pressed():
 		get_tree().change_scene("res://Scenario/Phases/Phase01/Phase01.tscn")
 		
 	pass # Replace with function body.
+
+
+func _on_Previsous_pressed():
+	index = index - 1
+	if index == -1:
+		index = 0
+	if index == 0:
+		$"BGs/tutorial-1".show()
+		$"hand-tilt".show()
+		$"hand-stroke".show()
+		$"BGs/tutorial-2".hide()
+		$"hand-upside".hide()
+	if index == 1:
+		$"BGs/tutorial-2".show()
+		$"BGs/tutorial-3".hide()
+		$"hand-click".hide()
+		$"hand-upside".set_scale(Vector2(1.0, 1.0))
+	if index == 2:
+		$"BGs/tutorial-3".show()
+		$"BGs/tutorial-4".hide()
+		$"btn-small-play".hide()
+		$"hand-click".show()
+	pass # Replace with function body.

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Bar/Check.gd" type="Script" id=1]
 [ext_resource path="res://Bar/check-undone.png" type="Texture" id=2]
 [ext_resource path="res://Bar/check-done.png" type="Texture" id=3]
+[ext_resource path="res://Bar/abertura.ogg" type="AudioStream" id=4]
 
 [node name="Check" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,3 +13,7 @@ texture = ExtResource( 3 )
 
 [node name="Undone" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 15.0

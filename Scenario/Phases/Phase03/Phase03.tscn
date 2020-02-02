@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenario/Phases/Controller/Controller.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Plants/Araca/Araca.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Bar/connector.png" type="Texture" id=6]
 [ext_resource path="res://Bar/Check.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenario/Phases/Phase03/3 acelerada.ogg" type="AudioStream" id=8]
+
 
 [node name="Phase03" type="Control"]
 anchor_right = 1.0
@@ -33,20 +35,20 @@ position = Vector2( 388, 217 )
 [node name="Plant5" parent="Controller/Workstation/Plants" index="4" instance=ExtResource( 4 )]
 position = Vector2( 388, 217 )
 
-[node name="Check1" parent="Controller/Bar" index="0" instance=ExtResource( 7 )]
-position = Vector2( 232, 29 )
+[node name="Check5" parent="Controller/Bar" index="0" instance=ExtResource( 7 )]
+position = Vector2( 564, 29 )
 
-[node name="Check2" parent="Controller/Bar" index="1" instance=ExtResource( 7 )]
-position = Vector2( 315, 29 )
+[node name="Check4" parent="Controller/Bar" index="1" instance=ExtResource( 7 )]
+position = Vector2( 481, 29 )
 
 [node name="Check3" parent="Controller/Bar" index="2" instance=ExtResource( 7 )]
 position = Vector2( 398, 29 )
 
-[node name="Check4" parent="Controller/Bar" index="3" instance=ExtResource( 7 )]
-position = Vector2( 481, 29 )
+[node name="Check2" parent="Controller/Bar" index="3" instance=ExtResource( 7 )]
+position = Vector2( 315, 29 )
 
-[node name="Check5" parent="Controller/Bar" index="4" instance=ExtResource( 7 )]
-position = Vector2( 564, 29 )
+[node name="Check1" parent="Controller/Bar" index="4" instance=ExtResource( 7 )]
+position = Vector2( 232, 29 )
 
 [node name="Connectors" type="Control" parent="."]
 margin_right = 40.0
@@ -85,6 +87,10 @@ margin_top = 24.0
 margin_right = 544.646
 margin_bottom = 64.0
 texture = ExtResource( 6 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
 
 [editable path="Controller"]
 

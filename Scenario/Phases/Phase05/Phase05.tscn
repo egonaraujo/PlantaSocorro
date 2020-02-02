@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenario/Phases/Controller/Controller.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Plants/Araca/Araca.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Bar/connector.png" type="Texture" id=6]
 [ext_resource path="res://Bar/Check.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenario/Phases/Phase05/5 acelerada.ogg" type="AudioStream" id=8]
+
 
 [node name="Phase05" type="Control"]
 anchor_right = 1.0
@@ -17,9 +19,6 @@ __meta__ = {
 
 [node name="Controller" parent="." instance=ExtResource( 2 )]
 next = ExtResource( 3 )
-
-[node name="ps-background" parent="Controller/Workstation" index="0"]
-position = Vector2( -0.598755, 0 )
 
 [node name="Plant3" parent="Controller/Workstation/Plants" index="0" instance=ExtResource( 5 )]
 position = Vector2( 388, 217 )
@@ -39,23 +38,23 @@ position = Vector2( 388, 217 )
 [node name="Plant1" parent="Controller/Workstation/Plants" index="5" instance=ExtResource( 1 )]
 position = Vector2( 388, 217 )
 
-[node name="Check1" parent="Controller/Bar" index="0" instance=ExtResource( 7 )]
-position = Vector2( 192, 37 )
+[node name="Check6" parent="Controller/Bar" index="0" instance=ExtResource( 7 )]
+position = Vector2( 607, 37 )
 
-[node name="Check2" parent="Controller/Bar" index="1" instance=ExtResource( 7 )]
-position = Vector2( 275, 37 )
-
-[node name="Check3" parent="Controller/Bar" index="2" instance=ExtResource( 7 )]
-position = Vector2( 358, 37 )
-
-[node name="Check4" parent="Controller/Bar" index="3" instance=ExtResource( 7 )]
-position = Vector2( 441, 37 )
-
-[node name="Check5" parent="Controller/Bar" index="4" instance=ExtResource( 7 )]
+[node name="Check5" parent="Controller/Bar" index="1" instance=ExtResource( 7 )]
 position = Vector2( 524, 37 )
 
-[node name="Check6" parent="Controller/Bar" index="5" instance=ExtResource( 7 )]
-position = Vector2( 607, 37 )
+[node name="Check4" parent="Controller/Bar" index="2" instance=ExtResource( 7 )]
+position = Vector2( 441, 37 )
+
+[node name="Check3" parent="Controller/Bar" index="3" instance=ExtResource( 7 )]
+position = Vector2( 358, 37 )
+
+[node name="Check2" parent="Controller/Bar" index="4" instance=ExtResource( 7 )]
+position = Vector2( 275, 37 )
+
+[node name="Check1" parent="Controller/Bar" index="5" instance=ExtResource( 7 )]
+position = Vector2( 192, 37 )
 
 [node name="Conenctors" type="Control" parent="."]
 margin_right = 40.0
@@ -110,6 +109,10 @@ texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
 
 [editable path="Controller"]
 

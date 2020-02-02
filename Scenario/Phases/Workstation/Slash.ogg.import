@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Slash.ogg-a9d8490f890c8fc2d81bfaa1a3074ae3.oggstr"
+
+[deps]
+
+source_file="res://Scenario/Phases/Workstation/Slash.ogg"
+dest_files=[ "res://.import/Slash.ogg-a9d8490f890c8fc2d81bfaa1a3074ae3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

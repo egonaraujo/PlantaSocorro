@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="PlantaSocorro"
 run/main_scene="res://Scenario/Menu/Menu.tscn"
-config/icon="res://icon.png"
+config/icon="res://favicon.png"
 
 [display]
 

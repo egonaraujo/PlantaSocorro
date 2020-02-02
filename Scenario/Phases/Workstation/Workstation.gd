@@ -35,14 +35,15 @@ func _process(delta):
 	&& whichPlant != null 
 	&& (whichTool ==2 || whichTool ==3)):
 		update_plant(whichPlant,whichTool, delta)
-		if(!$AudioStreamPlayer.playing()):
-			$AudioStreamPlayer.play()
+
 
 func update_plant(plant, status_id, increment):
 	plant.update_status(status_id, increment)
 	if plant.is_healthy() && !plant.healthy_emmited:
 		plant.healthy_emmited = true;
 		emit_signal("plant_healthy", plant.name)
+		$AudioStreamPlayer.stop()
+		isHolding = 0
 
 
 func selectTool(var i):

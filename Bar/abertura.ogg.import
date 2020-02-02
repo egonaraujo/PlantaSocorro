@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/abertura.ogg-9e21138ec004f181d8c68a8343f8796c.oggstr"
+
+[deps]
+
+source_file="res://Bar/abertura.ogg"
+dest_files=[ "res://.import/abertura.ogg-9e21138ec004f181d8c68a8343f8796c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

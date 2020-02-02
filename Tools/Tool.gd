@@ -4,6 +4,9 @@ export (int)var toolID = -1;
 
 signal tool_selected
 
+func _process(delta):
+	$highlight.set_rotation($highlight.get_rotation() + delta)
+
 func _input(event):
 	if (event is InputEventScreenTouch):
 		if(event.is_pressed()):

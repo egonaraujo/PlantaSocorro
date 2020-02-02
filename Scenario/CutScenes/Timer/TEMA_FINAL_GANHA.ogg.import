@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/TEMA_FINAL_GANHA.ogg-f58da903ef1a932fa6e4c41a86298ef3.oggstr"
+
+[deps]
+
+source_file="res://Scenario/CutScenes/Timer/TEMA_FINAL_GANHA.ogg"
+dest_files=[ "res://.import/TEMA_FINAL_GANHA.ogg-f58da903ef1a932fa6e4c41a86298ef3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

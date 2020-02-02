@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenario/CutScenes/CutScene1/CutScene1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Bar/connector.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Bar/Check.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Plants/Araca/Araca.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenario/Phases/Phase01/1 acelerada.ogg" type="AudioStream" id=7]
 
 [node name="Phase01" type="Control"]
 __meta__ = {
@@ -15,7 +16,7 @@ __meta__ = {
 [node name="Controller" parent="." instance=ExtResource( 3 )]
 next = ExtResource( 1 )
 
-[node name="Shears" parent="Controller/Workstation" index="2"]
+[node name="Shears" parent="Controller/Workstation" index="3"]
 position = Vector2( 596.958, 132.902 )
 
 [node name="Plant1" parent="Controller/Workstation/Plants" index="0" instance=ExtResource( 6 )]
@@ -80,6 +81,10 @@ texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
 
 [editable path="Controller"]
 

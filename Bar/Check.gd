@@ -33,6 +33,7 @@ func _process(delta):
 
 func done():
 	set_process(true)
+	$AudioStreamPlayer.play()
 	$Done.show()
 	$Undone.hide()
 
