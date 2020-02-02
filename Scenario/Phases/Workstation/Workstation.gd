@@ -2,6 +2,10 @@ extends Node2D
 
 signal plant_healthy
 
+export (AudioStreamOGGVorbis)var SlashSound
+export (AudioStreamOGGVorbis)var SpraySound
+export (AudioStreamOGGVorbis)var WaterSound
+export (AudioStreamOGGVorbis)var FertilizerSound
 
 var whichTool = -1
 var isHolding = 0
@@ -27,8 +31,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(isHolding == 1 && whichPlant != null):
+	if(isHolding == 1 
+	&& whichPlant != null 
+	&& (whichTool ==2 || whichTool ==3)):
 		update_plant(whichPlant,whichTool, delta)
+		if(!$AudioStreamPlayer.playing()):
+			$AudioStreamPlayer.play()
 
 func update_plant(plant, status_id, increment):
 	plant.update_status(status_id, increment)
@@ -55,18 +63,40 @@ func selectTool(var i):
 
 
 func tapPlant(plantNode):
+	if (whichTool == 0):
+		$AudioStreamPlayer.stop()
+		$AudioStreamPlayer.set_stream(FertilizerSound)
+		$AudioStreamPlayer.play()
 		update_plant(plantNode,whichTool,1)
 			
 func slashPlant(plantNode):
 	if(whichTool == 1):
+		$AudioStreamPlayer.stop()
+		$AudioStreamPlayer.set_stream(SlashSound)
+		$AudioStreamPlayer.play()
 		update_plant(plantNode,whichTool,1)
 
 func holdPlant(plantNode):
-	if(whichTool == 2 || whichTool == 3):
+	if(whichTool == 2 && isHolding==0):
+		$AudioStreamPlayer.stop()
+		$AudioStreamPlayer.set_stream(WaterSound)
+		$AudioStreamPlayer.play() 
+		isHolding =1
+		whichPlant = plantNode
+	if(whichTool == 3 && isHolding==0):
+		$AudioStreamPlayer.stop()
+		$AudioStreamPlayer.set_stream(SpraySound)
+		$AudioStreamPlayer.play()
 		isHolding =1
 		whichPlant = plantNode
 
 func releasePlant(plantNode):
-	if(whichTool == 2 || whichTool == 3):
+	if(whichTool == 2 && isHolding==1):
+		$AudioStreamPlayer.stop()
 		isHolding =0
 		whichPlant = null
+	if(whichTool == 3 && isHolding==1):
+		$AudioStreamPlayer.stop()
+		isHolding =0
+		whichPlant = null
+		
