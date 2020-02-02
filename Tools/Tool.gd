@@ -19,3 +19,10 @@ func _input(event):
 			if(touchItem):
 				print("Tap Item")
 				emit_signal("tool_selected",toolID)
+
+func select():
+	$highlight.show()
+
+func unselect():
+	$highlight.hide()
+

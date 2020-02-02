@@ -13,6 +13,11 @@ func _ready():
 	$Watercan.connect("tool_selected", self, "selectTool")
 	$BugSpray.connect("tool_selected", self, "selectTool")
 	
+	$Fertilizer.unselect()
+	$Shears.unselect()
+	$Watercan.unselect()
+	$BugSpray.unselect()
+	
 	for c in $Plants.get_children():
 		c.connect("plant_tapped",self,"tapPlant")
 		c.connect("plant_slash",self,"slashPlant")
@@ -34,6 +39,20 @@ func update_plant(plant, status_id, increment):
 
 func selectTool(var i):
 	whichTool=i;
+	$Fertilizer.unselect()
+	$Shears.unselect()
+	$Watercan.unselect()
+	$BugSpray.unselect()
+	if whichTool == 0:
+		$Fertilizer.select()
+	elif whichTool == 1:
+		$Shears.select()
+	elif whichTool == 2:
+		$Watercan.select()
+	elif whichTool == 3:
+		$BugSpray.select()
+		
+
 
 func tapPlant(plantNode):
 		update_plant(plantNode,whichTool,1)

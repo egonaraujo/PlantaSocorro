@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tools/Tool.gd" type="Script" id=1]
 [ext_resource path="res://Tools/ass-shears.png" type="Texture" id=2]
+[ext_resource path="res://Tools/highlight-orange.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 43.4926
@@ -10,6 +11,11 @@ height = 137.567
 [node name="Shears" type="Node2D"]
 script = ExtResource( 1 )
 toolID = 1
+
+[node name="highlight" type="Sprite" parent="."]
+position = Vector2( 1.2454, 8.70337 )
+scale = Vector2( 1.79416, 1.79416 )
+texture = ExtResource( 3 )
 
 [node name="ass-shears" type="Sprite" parent="."]
 texture = ExtResource( 2 )

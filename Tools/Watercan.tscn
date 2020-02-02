@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tools/Tool.gd" type="Script" id=1]
 [ext_resource path="res://Tools/ass-watercan.png" type="Texture" id=2]
+[ext_resource path="res://Tools/highlight-blue.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 108, 75 )
@@ -9,6 +10,11 @@ extents = Vector2( 108, 75 )
 [node name="Watercan" type="Node2D"]
 script = ExtResource( 1 )
 toolID = 2
+
+[node name="highlight" type="Sprite" parent="."]
+position = Vector2( 8.58929, 1 )
+scale = Vector2( 2.17857, 2.17857 )
+texture = ExtResource( 3 )
 
 [node name="ass-watercan" type="Sprite" parent="."]
 texture = ExtResource( 2 )
