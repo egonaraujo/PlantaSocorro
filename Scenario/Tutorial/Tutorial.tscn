@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenario/Tutorial/Tutorial.gd" type="Script" id=1]
 [ext_resource path="res://Scenario/Tutorial/tutorial-1.png" type="Texture" id=2]
 [ext_resource path="res://Scenario/Tutorial/tutorial-2.png" type="Texture" id=3]
 [ext_resource path="res://Scenario/Tutorial/tutorial-3.png" type="Texture" id=4]
 [ext_resource path="res://Scenario/Tutorial/tutorial-4.png" type="Texture" id=5]
+[ext_resource path="res://Scenario/Tutorial/btn-small-play.png" type="Texture" id=6]
+[ext_resource path="res://Scenario/Tutorial/hand-tilt.png" type="Texture" id=7]
+[ext_resource path="res://Scenario/Tutorial/hand-stroke.png" type="Texture" id=8]
+[ext_resource path="res://Scenario/Tutorial/hand-upside.png" type="Texture" id=9]
+[ext_resource path="res://Scenario/Tutorial/hand-click.png" type="Texture" id=10]
 
 [node name="Tutorial" type="Control"]
 anchor_right = 1.0
@@ -21,33 +26,53 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="tutorial-2" type="Sprite" parent="BGs"]
+visible = false
 texture = ExtResource( 3 )
 centered = false
 
 [node name="tutorial-3" type="Sprite" parent="BGs"]
+visible = false
 texture = ExtResource( 4 )
 centered = false
 
 [node name="tutorial-4" type="Sprite" parent="BGs"]
+visible = false
 texture = ExtResource( 5 )
 centered = false
 
-[node name="Skip" type="Button" parent="."]
+[node name="Skip" type="TextureButton" parent="."]
 margin_left = 2.84409
 margin_top = 4.78999
 margin_right = 325.844
 margin_bottom = 78.79
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Next" type="Button" parent="."]
-margin_left = 598.734
-margin_top = 141.894
-margin_right = 763.734
-margin_bottom = 208.894
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Next" type="TextureButton" parent="."]
+margin_left = 691.0
+margin_top = 310.0
+margin_right = 811.0
+margin_bottom = 369.0
+
+[node name="btn-small-play" type="Sprite" parent="."]
+visible = false
+position = Vector2( 750.26, 343.156 )
+texture = ExtResource( 6 )
+
+[node name="hand-tilt" type="Sprite" parent="."]
+position = Vector2( 367.104, 253.682 )
+texture = ExtResource( 7 )
+
+[node name="hand-stroke" type="Sprite" parent="."]
+position = Vector2( 402.893, 225.261 )
+texture = ExtResource( 8 )
+
+[node name="hand-upside" type="Sprite" parent="."]
+visible = false
+position = Vector2( 399.735, 277.893 )
+texture = ExtResource( 9 )
+
+[node name="hand-click" type="Sprite" parent="."]
+visible = false
+position = Vector2( 392.367, 224.209 )
+texture = ExtResource( 10 )
 [connection signal="pressed" from="Skip" to="." method="_on_Skip_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]

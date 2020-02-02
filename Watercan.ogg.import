@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Watercan.ogg-609c200772b2e9d4d6f5898839daa874.oggstr"
+
+[deps]
+
+source_file="res://Watercan.ogg"
+dest_files=[ "res://.import/Watercan.ogg-609c200772b2e9d4d6f5898839daa874.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
