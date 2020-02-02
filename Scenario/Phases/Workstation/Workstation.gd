@@ -36,7 +36,6 @@ func selectTool(var i):
 	whichTool=i;
 
 func tapPlant(plantNode):
-	if(whichTool == 0):
 		update_plant(plantNode,whichTool,1)
 			
 func slashPlant(plantNode):

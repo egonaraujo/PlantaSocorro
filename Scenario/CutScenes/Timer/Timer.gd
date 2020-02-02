@@ -1,7 +1,7 @@
-extends Control
+extends Node2D
 
 export (PackedScene) var next
-export (float) var delay = 2
+export (float) var delay = 4
 
 var delayed_time = 0
 
@@ -22,4 +22,10 @@ func _process(delta):
 	delayed_time = delayed_time + delta
 	if delayed_time > delay:
 		get_tree().change_scene_to(next)
-	pass
+	
+	var per_cent = 1-((delay-delayed_time)/delay)
+	var transform = -623*per_cent
+
+	$BG01.set_position(Vector2(0, transform))
+	$BG04.set_position(Vector2(0, transform))
+	$BG02.set_position(Vector2(0, transform))
