@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenario/Phases/Controller/Controller.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenario/CutScenes/CutScene3/CutScene3.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Plants/Pitanga/Pitanga.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Plants/Araca/Araca.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Bar/connector.png" type="Texture" id=6]
+[ext_resource path="res://Bar/Check.tscn" type="PackedScene" id=7]
 
 [node name="Phase03" type="Control"]
 anchor_right = 1.0
@@ -31,8 +33,58 @@ position = Vector2( 388, 217 )
 [node name="Plant5" parent="Controller/Workstation/Plants" index="4" instance=ExtResource( 4 )]
 position = Vector2( 388, 217 )
 
-[node name="Plant6" parent="Controller/Workstation/Plants" index="5" instance=ExtResource( 4 )]
-position = Vector2( 388, 217 )
+[node name="Check1" parent="Controller/Bar" index="0" instance=ExtResource( 7 )]
+position = Vector2( 232, 29 )
+
+[node name="Check2" parent="Controller/Bar" index="1" instance=ExtResource( 7 )]
+position = Vector2( 315, 29 )
+
+[node name="Check3" parent="Controller/Bar" index="2" instance=ExtResource( 7 )]
+position = Vector2( 398, 29 )
+
+[node name="Check4" parent="Controller/Bar" index="3" instance=ExtResource( 7 )]
+position = Vector2( 481, 29 )
+
+[node name="Check5" parent="Controller/Bar" index="4" instance=ExtResource( 7 )]
+position = Vector2( 564, 29 )
+
+[node name="Connectors" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connector1" type="TextureRect" parent="Connectors"]
+margin_left = 250.277
+margin_top = 24.0
+margin_right = 296.277
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connector2" type="TextureRect" parent="Connectors"]
+margin_left = 334.73
+margin_top = 24.0
+margin_right = 380.73
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="Connector3" type="TextureRect" parent="Connectors"]
+margin_left = 417.292
+margin_top = 24.0
+margin_right = 463.292
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="Connector4" type="TextureRect" parent="Connectors"]
+margin_left = 498.646
+margin_top = 24.0
+margin_right = 544.646
+margin_bottom = 64.0
+texture = ExtResource( 6 )
 
 [editable path="Controller"]
 
