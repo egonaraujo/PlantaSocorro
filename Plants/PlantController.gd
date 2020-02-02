@@ -1,13 +1,13 @@
 extends Node2D
 
-export (float)var status0 = 0;
-export (float)var status1 = 0;
-export (float)var status2 = 0;
-export (float)var status3 = 0;
-export (float)var healthy_limit0 = 10;
-export (float)var healthy_limit1 = 10;
-export (float)var healthy_limit2 = 10;
-export (float)var healthy_limit3 = 10;
+export (float)var Fertilizer = 0
+export (float)var Branches = 0
+export (float)var Water = 0
+export (float)var Bugspray = 0
+export (float)var healthy_fertilizer = 10
+export (float)var healthy_branches = 3
+export (float)var healthy_water = 1.6
+export (float)var healthy_kills = 1.6
 
 signal plant_tapped
 signal plant_slash
@@ -16,8 +16,29 @@ signal plant_hold_up
 
 var isHolding
 var healthy_emmited = false
+var slashedIndex = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if(healthy_fertilizer > 0):
+		$Flowers.hide()
+	if(healthy_kills == 0):
+		$Bugs.hide()
+	if(healthy_water == 0):
+		$Dried.hide();
+	for i in range(10):
+		var branchAsset = $Leaves.find_node("Branch%d"%[i])
+		if(!branchAsset):
+			break
+		if(i < healthy_branches):
+			continue
+		if(healthy_branches <= i):
+			if(branchAsset):
+				var branchCol = $Leaves/Colliders.find_node("Colliders%dCollider"% [i])
+				$Leaves.remove_child(branchAsset)
+				$Leaves/Colliders.remove_child(branchCol)
+			else:
+				break
+	
 	pass # Replace with function body.
 
 
@@ -48,32 +69,45 @@ func _input(event):
 	if( event is InputEventScreenDrag):
 		var point = event.position
 		var space_state = get_world_2d().direct_space_state
-		var collidersTouched = space_state.intersect_point(point, 32, [],
+		var collidersTouched = space_state.intersect_point(point, 32, [$Plant],
 													 2147483647, false,true)
 		var slashedPlant = false
 		for dict in collidersTouched:
-			if (dict.collider == $Leaves/Leaf):
+			if (dict.collider == $Leaves/Colliders):
 				slashedPlant = true
+				slashedIndex = dict.shape
 				break
-		if(slashedPlant && event.speed.length() > 500):
+		if(slashedPlant && event.speed.length() > 300):
 			emit_signal("plant_slash", $".")
 
 
 func is_healthy():
-	return status0 > healthy_limit0\
-		   && status1 > healthy_limit1\
-		   && status2 > healthy_limit2\
-		   && status3 > healthy_limit3
+	return Fertilizer >= healthy_fertilizer\
+		   && Branches >= healthy_branches\
+		   && Water >= healthy_water\
+		   && Bugspray >= healthy_kills
 
 func update_status(status_id, increment):
 	if status_id == 0:
-		status0 += increment
+		Fertilizer += increment
+		if(Fertilizer >= healthy_fertilizer):
+			$Flowers.show()
 	elif status_id == 1:
-		status1 += increment
+		if(slashedIndex!= -1):
+			Branches += increment
+			var branchAsset = $Leaves.get_children()[slashedIndex]
+			var branchCol = $Leaves/Colliders.get_children()[slashedIndex]
+			$Leaves.remove_child(branchAsset)
+			$Leaves/Colliders.remove_child(branchCol)
+			slashedIndex = -1
 	elif status_id == 2:
-		status2 += increment
+		Water += increment
+		if Water >= healthy_water:
+			$Dried.hide()
 	elif status_id == 3:
-		status3 += increment
+		Bugspray += increment
+		if Bugspray >= healthy_kills:
+			$Bugs.hide()
 	pass
 
 func disable():

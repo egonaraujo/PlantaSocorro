@@ -1,7 +1,10 @@
 extends Control
 
+export (PackedScene)var next
+
 var _tabs = []
 var _buffer = []
+
 
 var time_passed = 0;
 # Declare member variables here. Examples:
@@ -10,6 +13,7 @@ var time_passed = 0;
 
 signal lose_phase
 signal win_phase
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,8 +34,7 @@ func _ready():
 func _process(delta):
 	time_passed = time_passed + delta
 	if time_passed > 90: # one and a half minutes
-		print("LOSE")
-		emit_signal("lose_phase");
+		get_tree().change_scene("res://Scenario/Menu/Menu.tscn")
 	
 	var per_cent = 1-((90-time_passed)/90)
 	var rotation = 90*per_cent
@@ -94,6 +97,5 @@ func _on_Workstation_plant_healthy(plant_name):
 		if ""!= name:
 			return
 	
-	print("WIN")
-	emit_signal("win_phase")
+	get_tree().change_scene_to(next)
 	pass # Replace with function body.

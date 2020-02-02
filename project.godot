@@ -23,6 +23,8 @@ config/icon="res://icon.png"
 
 window/size/width=812
 window/size/height=375
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [input_devices]
 

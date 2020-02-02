@@ -8,10 +8,10 @@ var isHolding = 0
 var whichPlant = null;
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Tool0.connect("tool_selected", self, "selectTool")
-	$Tool1.connect("tool_selected", self, "selectTool")
-	$Tool2.connect("tool_selected", self, "selectTool")
-	$Tool3.connect("tool_selected", self, "selectTool")
+	$Fertilizer.connect("tool_selected", self, "selectTool")
+	$Shears.connect("tool_selected", self, "selectTool")
+	$Watercan.connect("tool_selected", self, "selectTool")
+	$BugSpray.connect("tool_selected", self, "selectTool")
 	
 	for c in $Plants.get_children():
 		c.connect("plant_tapped",self,"tapPlant")
@@ -41,7 +41,6 @@ func tapPlant(plantNode):
 			
 func slashPlant(plantNode):
 	if(whichTool == 1):
-		print("Slash")
 		update_plant(plantNode,whichTool,1)
 
 func holdPlant(plantNode):

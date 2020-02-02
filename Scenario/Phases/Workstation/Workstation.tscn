@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenario/Phases/Workstation/Workstation.gd" type="Script" id=1]
-[ext_resource path="res://Tools/Tool0.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Tools/Tool2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Tools/Tool1.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Tools/Tool3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Tools/Fertilizer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tools/Watercan.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tools/Shears.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tools/Bugspray.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenario/Phases/Workstation/ps-background.png" type="Texture" id=6]
 
 [node name="Workstation" type="Node2D"]
@@ -15,20 +15,24 @@ scale = Vector2( 0.500012, 0.500012 )
 texture = ExtResource( 6 )
 centered = false
 
-[node name="Tool0" parent="." instance=ExtResource( 2 )]
-position = Vector2( 214.436, 190.23 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Fertilizer" parent="." instance=ExtResource( 2 )]
+position = Vector2( 214.126, 140.593 )
+rotation = 0.261799
+scale = Vector2( 0.8, 0.8 )
 
-[node name="Tool1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 214.007, 317.61 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Shears" parent="." instance=ExtResource( 4 )]
+position = Vector2( 580.075, 142.136 )
+rotation = -0.139285
+scale = Vector2( 0.7, 0.7 )
 
-[node name="Tool2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 652.012, 167.043 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Watercan" parent="." instance=ExtResource( 3 )]
+position = Vector2( 608.692, 298.808 )
+rotation = -0.249618
+scale = Vector2( 0.7, 0.7 )
 
-[node name="Tool3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 649.023, 301.96 )
-scale = Vector2( 0.4, 0.4 )
+[node name="BugSpray" parent="." instance=ExtResource( 5 )]
+position = Vector2( 200.786, 299.499 )
+rotation = 0.297187
+scale = Vector2( 0.7, 0.7 )
 
 [node name="Plants" type="Node2D" parent="."]

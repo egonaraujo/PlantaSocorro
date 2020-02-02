@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://BasicAssets/Circle.png" type="Texture" id=1]
-[ext_resource path="res://BasicAssets/Triangle.png" type="Texture" id=2]
+[ext_resource path="res://Scenario/Phases/Controller/hud-timer-pointer.png" type="Texture" id=1]
+[ext_resource path="res://Scenario/Phases/Controller/hud-timer.png" type="Texture" id=2]
 [ext_resource path="res://Scenario/Phases/Controller/Controller.gd" type="Script" id=3]
 [ext_resource path="res://Scenario/Phases/Workstation/Workstation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenario/Phases/Controller/tab-more.png" type="Texture" id=5]
+[ext_resource path="res://Scenario/Phases/Controller/tab-normal.png" type="Texture" id=6]
 
 [node name="Controller" type="Control"]
 anchor_right = 1.0
@@ -13,64 +15,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tab0" type="Button" parent="."]
-margin_right = 140.0
-margin_bottom = 60.0
+[node name="Tab0" type="TextureButton" parent="."]
+margin_right = 155.0
+margin_bottom = 53.0
+texture_normal = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tab1" type="Button" parent="."]
-margin_left = 140.0
-margin_right = 280.0
-margin_bottom = 60.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Tab1" type="TextureButton" parent="."]
+margin_left = 155.0
+margin_right = 310.0
+margin_bottom = 53.0
+texture_normal = ExtResource( 6 )
 
-[node name="Tab2" type="Button" parent="."]
-margin_left = 280.0
-margin_right = 420.0
-margin_bottom = 60.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Tab2" type="TextureButton" parent="."]
+margin_left = 310.0
+margin_right = 465.0
+margin_bottom = 53.0
+texture_normal = ExtResource( 6 )
 
-[node name="Tab3" type="Button" parent="."]
-margin_left = 420.0
-margin_right = 560.0
-margin_bottom = 60.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Tab3" type="TextureButton" parent="."]
+margin_left = 464.0
+margin_right = 619.0
+margin_bottom = 53.0
+texture_normal = ExtResource( 6 )
 
-[node name="Tab4" type="Button" parent="."]
-margin_left = 560.0
-margin_right = 700.0
-margin_bottom = 60.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Tab4" type="TextureButton" parent="."]
+margin_left = 617.0
+margin_right = 688.0
+margin_bottom = 53.0
+texture_normal = ExtResource( 5 )
 
 [node name="ClockBG" type="TextureRect" parent="."]
-margin_left = 700.0
-margin_right = 950.0
-margin_bottom = 250.0
-texture = ExtResource( 1 )
+margin_left = 668.0
+margin_top = -18.0
+margin_right = 826.0
+margin_bottom = 140.0
+texture = ExtResource( 2 )
+stretch_mode = 1
 
 [node name="ClockArrow" type="TextureRect" parent="."]
-margin_left = 700.0
-margin_right = 950.0
-margin_bottom = 250.0
-rect_rotation = 90.0
-rect_pivot_offset = Vector2( 125, 125 )
-texture = ExtResource( 2 )
-flip_h = true
+margin_left = 730.173
+margin_top = -74.2891
+margin_right = 886.173
+margin_bottom = 82.7109
+rect_pivot_offset = Vector2( 78, 78 )
+texture = ExtResource( 1 )
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Workstation" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 0.773788 )
 z_index = -1
 [connection signal="pressed" from="Tab0" to="." method="_on_Tab0_pressed"]
 [connection signal="pressed" from="Tab1" to="." method="_on_Tab1_pressed"]

@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenario/Menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/04B_03__.TTF" type="DynamicFontData" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-size = 72
-font_data = ExtResource( 2 )
+[ext_resource path="res://Scenario/Menu/btn-play.png" type="Texture" id=2]
+[ext_resource path="res://Scenario/Menu/btn-about.png" type="Texture" id=3]
+[ext_resource path="res://Scenario/Menu/background-menu.png" type="Texture" id=4]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -15,24 +13,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Play" type="Button" parent="."]
-margin_left = 23.2875
-margin_top = 135.02
-margin_right = 423.287
-margin_bottom = 235.02
+[node name="background-menu" type="Sprite" parent="."]
+position = Vector2( 406.5, 188 )
+texture = ExtResource( 4 )
 
-[node name="Credits" type="Button" parent="."]
-margin_left = 22.385
-margin_top = 248.38
-margin_right = 422.385
-margin_bottom = 348.38
+[node name="Play" type="TextureButton" parent="."]
+margin_left = 288.0
+margin_top = 264.0
+margin_right = 520.0
+margin_bottom = 351.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="."]
-margin_left = 299.952
-margin_top = 32.6195
-margin_right = 479.952
-margin_bottom = 104.62
-custom_fonts/font = SubResource( 1 )
-text = "MENU"
+[node name="Credits" type="TextureButton" parent="."]
+margin_left = 701.466
+margin_top = 1.52588e-05
+margin_right = 812.466
+margin_bottom = 81.0
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
