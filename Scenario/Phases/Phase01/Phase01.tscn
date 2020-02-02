@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenario/CutScenes/CutScene1/CutScene1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bar/connector.png" type="Texture" id=2]
 [ext_resource path="res://Scenario/Phases/Controller/Controller.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Bar/Check.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=6]
 
 [node name="Phase01" type="Control"]
@@ -37,6 +39,78 @@ position = Vector2( 401.396, 219.441 )
 [node name="Plant6" parent="Controller/Workstation/Plants" index="5" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 402.757, 218.081 )
+
+[node name="Check1" parent="Controller/Bar" index="0" instance=ExtResource( 4 )]
+position = Vector2( 623, 27.9753 )
+
+[node name="Check2" parent="Controller/Bar" index="1" instance=ExtResource( 4 )]
+position = Vector2( 540, 27.9753 )
+
+[node name="Check3" parent="Controller/Bar" index="2" instance=ExtResource( 4 )]
+position = Vector2( 457, 27.9753 )
+
+[node name="Check4" parent="Controller/Bar" index="3" instance=ExtResource( 4 )]
+position = Vector2( 374, 27.9753 )
+
+[node name="Check5" parent="Controller/Bar" index="4" instance=ExtResource( 4 )]
+position = Vector2( 291, 27.9753 )
+
+[node name="Check6" parent="Controller/Bar" index="5" instance=ExtResource( 4 )]
+position = Vector2( 208, 27.9753 )
+
+[node name="Connectors" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Connector1" type="TextureRect" parent="Connectors"]
+margin_left = 226.318
+margin_top = 24.9753
+margin_right = 272.318
+margin_bottom = 64.9753
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connector2" type="TextureRect" parent="Connectors"]
+margin_left = 558.911
+margin_top = 24.0
+margin_right = 604.911
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connector3" type="TextureRect" parent="Connectors"]
+margin_left = 475.519
+margin_top = 24.9753
+margin_right = 521.519
+margin_bottom = 64.9753
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connector4" type="TextureRect" parent="Connectors"]
+margin_left = 393.59
+margin_top = 24.9753
+margin_right = 439.59
+margin_bottom = 64.9753
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connector5" type="TextureRect" parent="Connectors"]
+margin_left = 309.71
+margin_top = 24.9753
+margin_right = 355.71
+margin_bottom = 64.9753
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="Controller"]
 

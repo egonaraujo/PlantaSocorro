@@ -4,9 +4,11 @@ export (PackedScene)var next
 
 var _tabs = []
 var _buffer = []
+var _bar_check = []
 
 
 var time_passed = 0;
+var plants_done = 0;
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -21,8 +23,11 @@ func _ready():
 	for plant in $Workstation/Plants.get_children():
 		_buffer.push_back("Workstation/Plants/%s" % plant.name)
 		plant.disable()
+	for check in $Bar.get_children():
+		_bar_check.push_front(check)
+		check.undone()
 	
-	for i in range(0, 4):
+	for i in range(0, 1):
 		_tabs.push_back(_buffer[0])
 		_buffer.pop_front()
 	
@@ -56,25 +61,6 @@ func _on_Tab4_pressed():
 	#get_node(_tabs[0]).show()
 	pass
 
-
-
-func _on_Tab3_pressed():
-	select_tab(3)
-
-
-
-func _on_Tab2_pressed():
-	select_tab(2)
-
-
-func _on_Tab1_pressed():
-	select_tab(1)
-
-
-func _on_Tab0_pressed():
-	select_tab(0)
-
-
 func _on_Workstation_plant_healthy(plant_name):
 	var index = 0
 
@@ -84,6 +70,8 @@ func _on_Workstation_plant_healthy(plant_name):
 		else:
 			index = index +1
 	$Workstation/Plants.remove_child(get_node(_tabs[index]))
+	_bar_check[plants_done].done()
+	plants_done = plants_done +1
 	print(index)
 	if _buffer.size() > 0:
 		_tabs[index] = _buffer[0]
