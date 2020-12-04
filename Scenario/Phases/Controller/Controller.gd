@@ -44,6 +44,7 @@ func _ready():
 		5:
 			musicStream = MusicController.Music_Stream.PHASE5
 	MusicController.switchMusic(musicStream)
+	MusicController.changeVolume(-13)
 	pass # Replace with function body.
 
 

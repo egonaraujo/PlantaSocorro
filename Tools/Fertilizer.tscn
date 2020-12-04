@@ -12,8 +12,8 @@ script = ExtResource( 1 )
 toolID = 0
 
 [node name="highlight" type="Sprite" parent="."]
-position = Vector2( 5.23752, -8.42486 )
-scale = Vector2( 1.7034, 1.7034 )
+position = Vector2( 7.56302, -4.41174 )
+scale = Vector2( 1.6, 1.6 )
 texture = ExtResource( 3 )
 
 [node name="ass-fertilizer" type="Sprite" parent="."]

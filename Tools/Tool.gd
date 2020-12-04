@@ -20,7 +20,6 @@ func _input(event):
 					touchItem = true
 					break
 			if(touchItem):
-				print("Tap Item")
 				emit_signal("tool_selected",toolID)
 
 func select():

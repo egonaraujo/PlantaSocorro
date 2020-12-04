@@ -21,7 +21,7 @@ config/icon="res://favicon.png"
 
 [autoload]
 
-MusicController="*res://MusicController/music_controller_singleton.tscn"
+MusicController="*res://MusicController/MusicControllerSingleton.tscn"
 
 [display]
 

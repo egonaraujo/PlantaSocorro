@@ -13,7 +13,7 @@ toolID = 2
 
 [node name="highlight" type="Sprite" parent="."]
 position = Vector2( 8.58929, 1 )
-scale = Vector2( 2.17857, 2.17857 )
+scale = Vector2( 1.6, 1.6 )
 texture = ExtResource( 3 )
 
 [node name="ass-watercan" type="Sprite" parent="."]

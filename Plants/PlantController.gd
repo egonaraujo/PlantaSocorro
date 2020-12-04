@@ -98,6 +98,7 @@ func update_status(status_id, increment):
 			var branchAsset = $Leaves.get_children()[slashedIndex]
 			var branchCol = $Leaves/Colliders.get_children()[slashedIndex]
 			$Leaves.remove_child(branchAsset)
+			$FallingLeaves.add_child(branchAsset)
 			$Leaves/Colliders.remove_child(branchCol)
 			slashedIndex = -1
 	elif status_id == 2:

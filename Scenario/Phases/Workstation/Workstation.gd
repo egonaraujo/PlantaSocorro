@@ -6,10 +6,14 @@ export (AudioStreamOGGVorbis)var SlashSound
 export (AudioStreamOGGVorbis)var SpraySound
 export (AudioStreamOGGVorbis)var WaterSound
 export (AudioStreamOGGVorbis)var FertilizerSound
+export (float)var trailLength
 
 var whichTool = -1
 var isHolding = 0
 var whichPlant = null;
+var isTouchingScreen = false
+
+var trailRemoverTimer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Fertilizer.connect("tool_selected", self, "selectTool")
@@ -35,6 +39,24 @@ func _process(delta):
 	&& whichPlant != null 
 	&& (whichTool ==2 || whichTool ==3)):
 		update_plant(whichPlant,whichTool, delta)
+	trailRemoverTimer += delta
+	if (trailRemoverTimer > 0.03
+			&& $ShearsTrailLine2D.get_point_count() > 0):
+		$ShearsTrailLine2D.remove_point(0)
+		trailRemoverTimer = 0
+
+
+
+func _input(event):
+	if (event is InputEventScreenTouch):
+		isTouchingScreen=event.is_pressed()
+	if(whichTool == 1):
+		if( event is InputEventScreenDrag):
+			$ShearsTrailLine2D.add_point(event.position)
+			if ($ShearsTrailLine2D.get_point_count() > trailLength):
+				$ShearsTrailLine2D.remove_point(0)
+				trailRemoverTimer = 0;
+
 
 
 func update_plant(plant, status_id, increment):

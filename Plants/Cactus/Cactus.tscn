@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Plants/PlantController.gd" type="Script" id=1]
 [ext_resource path="res://Plants/Cactus/plant-cactus-branch2.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Plants/Cactus/plant-cactus-bugspray.png" type="Texture" id=6]
 [ext_resource path="res://Plants/Cactus/plant-cactus-watercan.png" type="Texture" id=7]
 [ext_resource path="res://Plants/Cactus/plant-cactus-branch3.png" type="Texture" id=8]
+[ext_resource path="res://Plants/FallingLeaves.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 68.8109
@@ -58,7 +59,7 @@ position = Vector2( -60.6544, 22.2634 )
 texture = ExtResource( 4 )
 
 [node name="Branch1" type="Sprite" parent="Leaves"]
-position = Vector2( 26.8221, -103.703 )
+position = Vector2( 26.822, -103 )
 texture = ExtResource( 2 )
 
 [node name="Branch2" type="Sprite" parent="Leaves"]
@@ -83,3 +84,6 @@ position = Vector2( 86.9982, -23.5092 )
 rotation = -1.37475
 scale = Vector2( 0.828634, 0.745471 )
 shape = SubResource( 4 )
+
+[node name="FallingLeaves" type="Node2D" parent="."]
+script = ExtResource( 9 )

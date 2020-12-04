@@ -36,4 +36,5 @@ centered = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = -17.0
 autoplay = true

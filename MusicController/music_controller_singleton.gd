@@ -10,9 +10,10 @@ var phase5_music
 
 enum Music_Stream{ MAIN_MENU, PHASE1, PHASE2, PHASE3, PHASE4, PHASE5, LOSE,}
 var next_stream
+var current_stream
 var has_next = false
 var lowest_volume = -30
-export (float)var target_volume = -5
+var target_volume = -5
 export (float)var time_between_music = 0.5
 var current_timer = 0
 var fade_in = false
@@ -26,7 +27,10 @@ func _ready():
 	phase4_music = preload("res://MusicController/phase_4.ogg")
 	phase5_music = preload("res://MusicController/phase_5.ogg")
 	next_stream = menu_music
+	current_stream = menu_music
 	$MusicPlayer.volume_db=target_volume
+	$MusicPlayer.stream = next_stream
+	$MusicPlayer.play()
 	set_process(true)
 	pass # Replace with function body.
 
@@ -36,12 +40,13 @@ func _process(delta):
 	var music_fade_percent = current_timer/time_between_music
 	if has_next:
 		if music_fade_percent > 1:
-			$MusicPlayer.volume_db = 0
-			$MusicPlayer.stream = next_stream
+			$MusicPlayer.volume_db = lowest_volume
+			$MusicPlayer.set_stream(next_stream)
 			$MusicPlayer.play()
 			has_next=false
 			fade_in = true
 			current_timer = 0
+			current_stream = next_stream
 		else:
 			$MusicPlayer.volume_db = _value_from_percentage(music_fade_percent,
 															target_volume,
@@ -74,14 +79,23 @@ func switchMusic(whichMusic, force = false):
 			next_stream = menu_music
 		_:
 			next_stream = menu_music
+	if(current_stream == next_stream):
+		return
 	if (force):
-		$MusicPlayer.stream = next_stream
+		$MusicPlayer.set_stream(next_stream)
 		$MusicPlayer.play()
+		current_stream = next_stream
 	else:
 		has_next = true
 		current_timer = 0
 	pass
 
 
-func _value_from_percentage(percentage,maxvalue,minvalue):
+func changeVolume(newVolume):
+	target_volume = newVolume
+	if(!has_next):
+		$MusicPlayer.volume_db = newVolume
+	
+
+func _value_from_percentage(percentage,minvalue,maxvalue):
 	return (maxvalue-minvalue)*percentage + minvalue
