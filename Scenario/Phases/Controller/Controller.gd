@@ -1,6 +1,7 @@
 extends Control
 
 export (PackedScene)var next
+export (float)var level
 
 var _tabs = []
 var _buffer = []
@@ -12,9 +13,6 @@ var plants_done = 0;
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
-signal lose_phase
-signal win_phase
 
 
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +30,20 @@ func _ready():
 		_buffer.pop_front()
 	
 	select_tab(0)
+	
+	var musicStream = MusicController.Music_Stream.PHASE1
+	match level:
+		1:
+			musicStream = MusicController.Music_Stream.PHASE1
+		2:
+			musicStream = MusicController.Music_Stream.PHASE2
+		3:
+			musicStream = MusicController.Music_Stream.PHASE3
+		4:
+			musicStream = MusicController.Music_Stream.PHASE4
+		5:
+			musicStream = MusicController.Music_Stream.PHASE5
+	MusicController.switchMusic(musicStream)
 	pass # Replace with function body.
 
 
@@ -52,8 +64,6 @@ func select_tab(i):
 			if tab != "":
 				get_node(tab).disable()
 		get_node(_tabs[i]).enable()
-	print("Selecionei TAB: %d"%(i))
-		# Ativa tab 
 
 func _on_Tab4_pressed():
 	#for tab in _tabs:

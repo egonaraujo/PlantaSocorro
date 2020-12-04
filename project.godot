@@ -19,6 +19,10 @@ config/name="PlantaSocorro"
 run/main_scene="res://Scenario/Menu/Menu.tscn"
 config/icon="res://favicon.png"
 
+[autoload]
+
+MusicController="*res://MusicController/music_controller_singleton.tscn"
+
 [display]
 
 window/size/width=812

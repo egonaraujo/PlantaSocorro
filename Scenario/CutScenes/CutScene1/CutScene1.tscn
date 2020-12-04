@@ -22,5 +22,3 @@ centered = false
 [node name="badge-success" type="Sprite" parent="."]
 position = Vector2( 400, 224 )
 texture = ExtResource( 4 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

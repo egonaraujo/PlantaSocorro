@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenario/Phases/Controller/Controller.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://Plants/Araca/Araca.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Bar/connector.png" type="Texture" id=6]
 [ext_resource path="res://Bar/Check.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenario/Phases/Phase04/4 acelerada.ogg" type="AudioStream" id=8]
-
 
 [node name="Phase04" type="Control"]
 anchor_right = 1.0
@@ -97,10 +95,6 @@ margin_top = 32.0
 margin_right = 590.275
 margin_bottom = 72.0
 texture = ExtResource( 6 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-autoplay = true
 
 [editable path="Controller"]
 

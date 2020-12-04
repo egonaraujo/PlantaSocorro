@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenario/Tutorial/Tutorial.gd" type="Script" id=1]
 [ext_resource path="res://Scenario/Tutorial/tutorial-1.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Scenario/Tutorial/hand-stroke.png" type="Texture" id=8]
 [ext_resource path="res://Scenario/Tutorial/hand-upside.png" type="Texture" id=9]
 [ext_resource path="res://Scenario/Tutorial/hand-click.png" type="Texture" id=10]
-[ext_resource path="res://loop menu.ogg" type="AudioStream" id=11]
 
 [node name="Tutorial" type="Control"]
 anchor_right = 1.0
@@ -81,10 +80,6 @@ texture = ExtResource( 9 )
 visible = false
 position = Vector2( 392.367, 224.209 )
 texture = ExtResource( 10 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-autoplay = true
 [connection signal="pressed" from="Skip" to="." method="_on_Skip_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="Previsous" to="." method="_on_Previsous_pressed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/phase_1.ogg-f42b035791330fbd44ef6b95047e6f0b.oggstr"
+
+[deps]
+
+source_file="res://MusicController/phase_1.ogg"
+dest_files=[ "res://.import/phase_1.ogg-f42b035791330fbd44ef6b95047e6f0b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
