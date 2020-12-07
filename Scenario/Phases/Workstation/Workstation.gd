@@ -9,13 +9,17 @@ export (AudioStreamOGGVorbis)var FertilizerSound
 export (float)var trailLength
 
 var whichTool = -1
-var isHolding = 0
-var whichPlant = null;
+var isHolding = false
 var isTouchingScreen = false
+var slashedIndex = -1
+
+#PlantScene
+var ActivePlant
 
 var trailRemoverTimer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ActivePlant = null
 	$Fertilizer.connect("tool_selected", self, "selectTool")
 	$Shears.connect("tool_selected", self, "selectTool")
 	$Watercan.connect("tool_selected", self, "selectTool")
@@ -25,20 +29,12 @@ func _ready():
 	$Shears.unselect()
 	$Watercan.unselect()
 	$BugSpray.unselect()
-	
-	for c in $Plants.get_children():
-		c.connect("plant_tapped",self,"tapPlant")
-		c.connect("plant_slash",self,"slashPlant")
-		c.connect("plant_hold_down",self,"holdPlant")
-		c.connect("plant_hold_up",self,"releasePlant")
-		#c.connect()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(isHolding == 1 
-	&& whichPlant != null 
+	if(isHolding && ActivePlant != null 
 	&& (whichTool ==2 || whichTool ==3)):
-		update_plant(whichPlant,whichTool, delta)
+		update_plant(ActivePlant,whichTool, delta)
 	trailRemoverTimer += delta
 	if (trailRemoverTimer > 0.03
 			&& $ShearsTrailLine2D.get_point_count() > 0):
@@ -48,6 +44,7 @@ func _process(delta):
 
 
 func _input(event):
+	#Animation of slashing
 	if (event is InputEventScreenTouch):
 		isTouchingScreen=event.is_pressed()
 	if(whichTool == 1):
@@ -57,6 +54,44 @@ func _input(event):
 				$ShearsTrailLine2D.remove_point(0)
 				trailRemoverTimer = 0;
 
+	if (event is InputEventScreenTouch):
+		if(event.is_pressed()):
+			var point = event.position
+			var space_state = get_world_2d().direct_space_state
+			var collidersTouched = space_state.intersect_point(point, 32, [],
+					2147483647, false,true)
+			var touchPlant = false
+			for dict in collidersTouched:
+				if (dict.collider == ActivePlant.get_node("Plant") ):
+					touchPlant = true
+					break
+			if(touchPlant):
+				tapPlant()
+				holdPlant()
+		if(!event.is_pressed() && isHolding):
+			releasePlant()
+	if( event is InputEventScreenDrag):
+		var point = event.position
+		var space_state = get_world_2d().direct_space_state
+		var collidersTouched = space_state.intersect_point(
+				point, 32, [],
+				2147483647, false,true)
+		var slashedPlant = false
+		var stillOnPlant = false
+		var slashedIndex = -1
+		for dict in collidersTouched:
+			if (dict.collider == ActivePlant.get_node("Leaves/Colliders")):
+				slashedPlant = true
+				slashedIndex = dict.shape
+				break
+			if (dict.collider == ActivePlant.get_node("Plant")):
+				stillOnPlant = true
+		if(!stillOnPlant && isHolding):
+			releasePlant()
+		elif(stillOnPlant && !isHolding):
+			holdPlant()
+		if(slashedPlant && event.speed.length() > 200):
+			slashPlant(slashedIndex)
 
 
 func update_plant(plant, status_id, increment):
@@ -65,7 +100,7 @@ func update_plant(plant, status_id, increment):
 		plant.healthy_emmited = true;
 		emit_signal("plant_healthy", plant.name)
 		$AudioStreamPlayer.stop()
-		isHolding = 0
+		isHolding = false
 
 
 func selectTool(var i):
@@ -85,41 +120,33 @@ func selectTool(var i):
 		
 
 
-func tapPlant(plantNode):
+func tapPlant():
 	if (whichTool == 0):
 		$AudioStreamPlayer.stop()
 		$AudioStreamPlayer.set_stream(FertilizerSound)
 		$AudioStreamPlayer.play()
-		update_plant(plantNode,whichTool,1)
+		update_plant(ActivePlant,whichTool,1)
 			
-func slashPlant(plantNode):
+func slashPlant(slashIndex):
 	if(whichTool == 1):
 		$AudioStreamPlayer.stop()
 		$AudioStreamPlayer.set_stream(SlashSound)
 		$AudioStreamPlayer.play()
-		update_plant(plantNode,whichTool,1)
+		update_plant(ActivePlant,whichTool,slashIndex)
 
-func holdPlant(plantNode):
-	if(whichTool == 2 && isHolding==0):
+func holdPlant():
+	if(whichTool == 2 && !isHolding):
 		$AudioStreamPlayer.stop()
 		$AudioStreamPlayer.set_stream(WaterSound)
 		$AudioStreamPlayer.play() 
-		isHolding =1
-		whichPlant = plantNode
-	if(whichTool == 3 && isHolding==0):
+		isHolding =true
+	if(whichTool == 3 && !isHolding):
 		$AudioStreamPlayer.stop()
 		$AudioStreamPlayer.set_stream(SpraySound)
 		$AudioStreamPlayer.play()
-		isHolding =1
-		whichPlant = plantNode
+		isHolding =true
 
-func releasePlant(plantNode):
-	if(whichTool == 2 && isHolding==1):
+func releasePlant():
+	if((whichTool == 2 || whichTool == 3) && isHolding):
 		$AudioStreamPlayer.stop()
-		isHolding =0
-		whichPlant = null
-	if(whichTool == 3 && isHolding==1):
-		$AudioStreamPlayer.stop()
-		isHolding =0
-		whichPlant = null
-		
+		isHolding =false

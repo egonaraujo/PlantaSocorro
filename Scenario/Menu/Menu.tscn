@@ -14,7 +14,8 @@ __meta__ = {
 }
 
 [node name="background-menu" type="Sprite" parent="."]
-position = Vector2( 406.5, 188 )
+position = Vector2( 404.348, 188.995 )
+scale = Vector2( 1.00529, 1.00529 )
 texture = ExtResource( 4 )
 
 [node name="Play" type="TextureButton" parent="."]

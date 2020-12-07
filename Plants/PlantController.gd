@@ -16,7 +16,6 @@ signal plant_hold_up
 
 var isHolding
 var healthy_emmited = false
-var slashedIndex = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(healthy_fertilizer > 0):
@@ -42,45 +41,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-func _input(event):
-	if (event is InputEventScreenTouch):
-		if(event.is_pressed()):
-			var point = event.position
-			var space_state = get_world_2d().direct_space_state
-			var collidersTouched = space_state.intersect_point(point, 32, [],
-													 2147483647, false,true)
-			var touchPlant = false
-			for dict in collidersTouched:
-				if (dict.collider == $Plant):
-					touchPlant = true
-					break
-			if(touchPlant):
-				isHolding = true
-				emit_signal("plant_hold_down", $".")
-				emit_signal("plant_tapped", $".")
-		if(!event.is_pressed() && isHolding):
-			isHolding=false
-			emit_signal("plant_hold_up", $".")
-			var point = event.position
-	if( event is InputEventScreenDrag):
-		var point = event.position
-		var space_state = get_world_2d().direct_space_state
-		var collidersTouched = space_state.intersect_point(point, 32, [$Plant],
-													 2147483647, false,true)
-		var slashedPlant = false
-		for dict in collidersTouched:
-			if (dict.collider == $Leaves/Colliders):
-				slashedPlant = true
-				slashedIndex = dict.shape
-				break
-		if(slashedPlant && event.speed.length() > 300):
-			emit_signal("plant_slash", $".")
-
-
 func is_healthy():
 	return Fertilizer >= healthy_fertilizer\
 		   && Branches >= healthy_branches\
@@ -93,14 +53,13 @@ func update_status(status_id, increment):
 		if(Fertilizer >= healthy_fertilizer):
 			$Flowers.show()
 	elif status_id == 1:
-		if(slashedIndex!= -1):
-			Branches += increment
-			var branchAsset = $Leaves.get_children()[slashedIndex]
-			var branchCol = $Leaves/Colliders.get_children()[slashedIndex]
+		if(increment!= -1):
+			Branches += 1
+			var branchAsset = $Leaves.get_children()[increment]
+			var branchCol = $Leaves/Colliders.get_children()[increment]
 			$Leaves.remove_child(branchAsset)
 			$FallingLeaves.add_child(branchAsset)
 			$Leaves/Colliders.remove_child(branchCol)
-			slashedIndex = -1
 	elif status_id == 2:
 		Water += increment
 		if Water >= healthy_water:

@@ -25,9 +25,8 @@ func _ready():
 		_bar_check.push_front(check)
 		check.undone()
 	
-	for i in range(0, 1):
-		_tabs.push_back(_buffer[0])
-		_buffer.pop_front()
+	_tabs.push_back(_buffer[0])
+	$Workstation.ActivePlant= get_node(_buffer.pop_front())
 	
 	select_tab(0)
 	
@@ -66,12 +65,6 @@ func select_tab(i):
 				get_node(tab).disable()
 		get_node(_tabs[i]).enable()
 
-func _on_Tab4_pressed():
-	#for tab in _tabs:
-	#	get_node(tab).hide()
-	#get_node(_tabs[0]).show()
-	pass
-
 func _on_Workstation_plant_healthy(plant_name):
 	var index = 0
 
@@ -86,15 +79,12 @@ func _on_Workstation_plant_healthy(plant_name):
 	print(index)
 	if _buffer.size() > 0:
 		_tabs[index] = _buffer[0]
-		_buffer.pop_front()
+		$Workstation.ActivePlant=  get_node(_buffer.pop_front())
 		get_node(_tabs[index]).enable()
-		
 	else:
 		_tabs[index] = ""
-	
 	for name in _tabs:
 		if ""!= name:
 			return
-	
 	get_tree().change_scene_to(next)
 	pass # Replace with function body.
