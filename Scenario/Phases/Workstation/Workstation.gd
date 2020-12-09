@@ -8,10 +8,12 @@ export (AudioStreamOGGVorbis)var WaterSound
 export (AudioStreamOGGVorbis)var FertilizerSound
 export (float)var trailLength
 
-var whichTool = -1
+enum Tools {NONE=-1, FERTILIZER=0, SHEARS, WATERCAN, BUGSPRAY,}
+var whichTool = Tools.NONE
 var isHolding = false
-var isTouchingScreen = false
 var slashedIndex = -1
+
+var FertilizerParticleNodes
 
 #PlantScene
 var ActivePlant
@@ -19,6 +21,7 @@ var ActivePlant
 var trailRemoverTimer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	FertilizerParticleNodes = []
 	ActivePlant = null
 	$Fertilizer.connect("tool_selected", self, "selectTool")
 	$Shears.connect("tool_selected", self, "selectTool")
@@ -40,19 +43,18 @@ func _process(delta):
 			&& $ShearsTrailLine2D.get_point_count() > 0):
 		$ShearsTrailLine2D.remove_point(0)
 		trailRemoverTimer = 0
-
+	var particlesToRemove = []
+	for fertilizerParticle in FertilizerParticleNodes:
+		if(fertilizerParticle.time_alive > 2):
+			particlesToRemove.append(fertilizerParticle)
+	for particle in particlesToRemove:
+		(FertilizerParticleNodes as Array).erase(particle)
+		(particle as Particles2D).free()
 
 
 func _input(event):
-	#Animation of slashing
-	if (event is InputEventScreenTouch):
-		isTouchingScreen=event.is_pressed()
-	if(whichTool == 1):
-		if( event is InputEventScreenDrag):
-			$ShearsTrailLine2D.add_point(event.position)
-			if ($ShearsTrailLine2D.get_point_count() > trailLength):
-				$ShearsTrailLine2D.remove_point(0)
-				trailRemoverTimer = 0;
+	#Animation of tools
+	showToolAnimation(event)
 
 	if (event is InputEventScreenTouch):
 		if(event.is_pressed()):
@@ -121,32 +123,61 @@ func selectTool(var i):
 
 
 func tapPlant():
-	if (whichTool == 0):
-		$AudioStreamPlayer.stop()
-		$AudioStreamPlayer.set_stream(FertilizerSound)
-		$AudioStreamPlayer.play()
+	if (whichTool == Tools.FERTILIZER):
 		update_plant(ActivePlant,whichTool,1)
 			
 func slashPlant(slashIndex):
-	if(whichTool == 1):
+	if(whichTool == Tools.SHEARS):
 		$AudioStreamPlayer.stop()
 		$AudioStreamPlayer.set_stream(SlashSound)
 		$AudioStreamPlayer.play()
 		update_plant(ActivePlant,whichTool,slashIndex)
 
 func holdPlant():
-	if(whichTool == 2 && !isHolding):
-		$AudioStreamPlayer.stop()
-		$AudioStreamPlayer.set_stream(WaterSound)
-		$AudioStreamPlayer.play() 
+	if(whichTool == Tools.WATERCAN && !isHolding):
 		isHolding =true
-	if(whichTool == 3 && !isHolding):
-		$AudioStreamPlayer.stop()
-		$AudioStreamPlayer.set_stream(SpraySound)
-		$AudioStreamPlayer.play()
+	if(whichTool == Tools.BUGSPRAY && !isHolding):
 		isHolding =true
 
 func releasePlant():
-	if((whichTool == 2 || whichTool == 3) && isHolding):
-		$AudioStreamPlayer.stop()
+	if((whichTool == Tools.WATERCAN || whichTool == Tools.BUGSPRAY) && isHolding):
 		isHolding =false
+
+func showToolAnimation(event):
+	match whichTool:
+		Tools.SHEARS:
+			if( event is InputEventScreenDrag):
+				$ShearsTrailLine2D.add_point(event.position)
+				if ($ShearsTrailLine2D.get_point_count() > trailLength):
+					$ShearsTrailLine2D.remove_point(0)
+					trailRemoverTimer = 0;
+		Tools.WATERCAN:
+			updateEffectAndSound(event,$WaterParticles2D, WaterSound)
+		Tools.BUGSPRAY:
+			updateEffectAndSound(event,$BugSprayParticles2D, SpraySound)
+		Tools.FERTILIZER:
+			if( event is InputEventScreenTouch):
+				if(event.is_pressed()):
+					var newFertilizer = $FertilizerSprayParticles2D.duplicate()
+					add_child(newFertilizer)
+					newFertilizer.position = event.position
+					newFertilizer.emitting = event.is_pressed()
+					FertilizerParticleNodes.append(newFertilizer)
+					$AudioStreamPlayer.stop()
+					$AudioStreamPlayer.set_stream(FertilizerSound)
+					$AudioStreamPlayer.play()
+
+func updateEffectAndSound(event, particles : Particles2D ,sound):
+			if( event is InputEventScreenDrag):
+				if(particles != null):
+					particles.position = event.position
+			if( event is InputEventScreenTouch):
+				if(particles != null):
+					particles.emitting = event.is_pressed()
+					particles.position = event.position
+				if (event.is_pressed()):
+					$AudioStreamPlayer.stop()
+					$AudioStreamPlayer.set_stream(sound)
+					$AudioStreamPlayer.play()
+				else:
+					$AudioStreamPlayer.stop()

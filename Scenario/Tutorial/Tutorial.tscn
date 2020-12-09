@@ -20,6 +20,8 @@ __meta__ = {
 }
 
 [node name="BGs" type="Node2D" parent="."]
+position = Vector2( -2.15091, 0 )
+scale = Vector2( 1.003, 1.003 )
 
 [node name="tutorial-1" type="Sprite" parent="BGs"]
 texture = ExtResource( 2 )

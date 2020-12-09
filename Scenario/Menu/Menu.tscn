@@ -13,10 +13,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background-menu" type="Sprite" parent="."]
-position = Vector2( 404.348, 188.995 )
-scale = Vector2( 1.00529, 1.00529 )
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -2.0
+margin_right = 812.0
+margin_bottom = 376.0
 texture = ExtResource( 4 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Play" type="TextureButton" parent="."]
 margin_left = 288.0
