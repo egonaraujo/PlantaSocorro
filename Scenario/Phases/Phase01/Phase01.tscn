@@ -16,7 +16,15 @@ __meta__ = {
 next = ExtResource( 1 )
 level = 1.0
 
-[node name="Shears" parent="Controller/Workstation" index="3"]
+[node name="ps-background1" parent="Controller/Workstation" index="1"]
+position = Vector2( -8, -8.77379 )
+scale = Vector2( 0.506848, 0.506848 )
+
+[node name="ps-background2" parent="Controller/Workstation" index="2"]
+position = Vector2( -8, 0 )
+scale = Vector2( 0.506848, 0.500302 )
+
+[node name="Shears" parent="Controller/Workstation" index="4"]
 position = Vector2( 596.958, 132.902 )
 
 [node name="Plant1" parent="Controller/Workstation/Plants" index="0" instance=ExtResource( 6 )]

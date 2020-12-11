@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenario/Tutorial/Tutorial.gd" type="Script" id=1]
 [ext_resource path="res://Scenario/Tutorial/tutorial-1.png" type="Texture" id=2]
@@ -10,6 +10,11 @@
 [ext_resource path="res://Scenario/Tutorial/hand-stroke.png" type="Texture" id=8]
 [ext_resource path="res://Scenario/Tutorial/hand-upside.png" type="Texture" id=9]
 [ext_resource path="res://Scenario/Tutorial/hand-click.png" type="Texture" id=10]
+[ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenario/Phases/Workstation/Workstation.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenario/Tutorial/proximo.png" type="Texture" id=13]
+[ext_resource path="res://Fonts/Font_Chewy.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Scenario/Phases/Workstation/ps-background.png" type="Texture" id=15]
 
 [node name="Tutorial" type="Control"]
 anchor_right = 1.0
@@ -42,28 +47,16 @@ visible = false
 texture = ExtResource( 5 )
 centered = false
 
-[node name="Skip" type="TextureButton" parent="."]
-margin_left = 2.84409
-margin_top = 4.78999
-margin_right = 325.844
-margin_bottom = 78.79
+[node name="proximo" type="Sprite" parent="BGs/tutorial-4"]
+position = Vector2( 747.605, 338.261 )
+texture = ExtResource( 13 )
 
-[node name="Next" type="TextureButton" parent="."]
-margin_left = 691.0
-margin_top = 310.0
-margin_right = 811.0
-margin_bottom = 369.0
-
-[node name="Previsous" type="TextureButton" parent="."]
-margin_left = 7.84491
-margin_top = 316.316
-margin_right = 127.845
-margin_bottom = 375.316
-
-[node name="btn-small-play" type="Sprite" parent="."]
+[node name="PlayScene" type="Sprite" parent="BGs"]
 visible = false
-position = Vector2( 750.26, 343.156 )
-texture = ExtResource( 6 )
+self_modulate = Color( 0.388235, 0.388235, 0.470588, 1 )
+position = Vector2( 404.297, 188.458 )
+scale = Vector2( 0.510322, 0.510322 )
+texture = ExtResource( 15 )
 
 [node name="hand-tilt" type="Sprite" parent="."]
 position = Vector2( 367.104, 253.682 )
@@ -82,6 +75,73 @@ texture = ExtResource( 9 )
 visible = false
 position = Vector2( 392.367, 224.209 )
 texture = ExtResource( 10 )
+
+[node name="PracticeTutorial" type="Node2D" parent="."]
+visible = false
+position = Vector2( -2.15091, 0 )
+scale = Vector2( 1.003, 1.003 )
+
+[node name="Workstation" parent="PracticeTutorial" instance=ExtResource( 12 )]
+
+[node name="Cactus" parent="PracticeTutorial/Workstation/Plants" index="0" instance=ExtResource( 11 )]
+position = Vector2( 402.09, 210.557 )
+
+[node name="btn-small-play" type="TextureButton" parent="."]
+visible = false
+margin_left = 349.0
+margin_top = 127.0
+margin_right = 468.0
+margin_bottom = 240.0
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 4
+
+[node name="TextBack" type="RichTextLabel" parent="."]
+visible = false
+anchor_right = 0.183
+margin_left = 23.959
+margin_top = 325.918
+margin_right = 325.687
+margin_bottom = 427.371
+rect_clip_content = false
+custom_fonts/normal_font = ExtResource( 14 )
+custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
+text = "anterior"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skip" type="TextureButton" parent="."]
+margin_left = 2.84409
+margin_top = 4.78999
+margin_right = 325.844
+margin_bottom = 78.79
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="TextureButton" parent="."]
+margin_left = 690.0
+margin_top = 310.0
+margin_right = 810.0
+margin_bottom = 369.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Previsous" type="TextureButton" parent="."]
+margin_left = 7.84491
+margin_top = 316.316
+margin_right = 127.845
+margin_bottom = 375.316
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="btn-small-play" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="Skip" to="." method="_on_Skip_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="Previsous" to="." method="_on_Previsous_pressed"]
+
+[editable path="PracticeTutorial/Workstation"]
+
+[editable path="PracticeTutorial/Workstation/Plants/Cactus"]

@@ -8,6 +8,8 @@ func _process(delta):
 	$highlight.set_rotation($highlight.get_rotation() + delta)
 
 func _input(event):
+	if (self.visible == false):
+		return
 	if (event is InputEventScreenTouch):
 		if(event.is_pressed()):
 			var point = event.position

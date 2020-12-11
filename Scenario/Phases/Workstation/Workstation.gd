@@ -82,7 +82,7 @@ func _input(event):
 		var stillOnPlant = false
 		var slashedIndex = -1
 		for dict in collidersTouched:
-			if (dict.collider == ActivePlant.get_node("Leaves/Colliders")):
+			if (dict.collider == ActivePlant.get_node("Leaves").get_child(0)):
 				slashedPlant = true
 				slashedIndex = dict.shape
 				break
@@ -181,3 +181,8 @@ func updateEffectAndSound(event, particles : Particles2D ,sound):
 					$AudioStreamPlayer.play()
 				else:
 					$AudioStreamPlayer.stop()
+
+func disableEffects():
+	$AudioStreamPlayer.stop()
+	$BugSprayParticles2D.emitting = false
+	$WaterParticles2D.emitting = false

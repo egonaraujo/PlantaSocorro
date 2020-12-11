@@ -55,11 +55,11 @@ func update_status(status_id, increment):
 	elif status_id == 1:
 		if(increment!= -1):
 			Branches += 1
-			var branchAsset = $Leaves.get_children()[increment]
-			var branchCol = $Leaves/Colliders.get_children()[increment]
+			var branchAsset = $Leaves.get_children()[increment+1]
+			var branchCol = $Leaves.get_child(0).get_children()[increment]
 			$Leaves.remove_child(branchAsset)
 			$FallingLeaves.add_child(branchAsset)
-			$Leaves/Colliders.remove_child(branchCol)
+			$Leaves.get_child(0).remove_child(branchCol)
 	elif status_id == 2:
 		Water += increment
 		if Water >= healthy_water:

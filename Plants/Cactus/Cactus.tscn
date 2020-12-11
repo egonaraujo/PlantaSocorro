@@ -54,18 +54,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Branch0" type="Sprite" parent="Leaves"]
-position = Vector2( -60.6544, 22.2634 )
-texture = ExtResource( 4 )
-
-[node name="Branch1" type="Sprite" parent="Leaves"]
-position = Vector2( 26.822, -103 )
-texture = ExtResource( 2 )
-
-[node name="Branch2" type="Sprite" parent="Leaves"]
-position = Vector2( 83.9735, -25.5571 )
-texture = ExtResource( 8 )
-
 [node name="Colliders" type="Area2D" parent="Leaves"]
 
 [node name="Leaf0Collider" type="CollisionShape2D" parent="Leaves/Colliders"]
@@ -84,6 +72,18 @@ position = Vector2( 86.9982, -23.5092 )
 rotation = -1.37475
 scale = Vector2( 0.828634, 0.745471 )
 shape = SubResource( 4 )
+
+[node name="Branch0" type="Sprite" parent="Leaves"]
+position = Vector2( -60.6544, 22.2634 )
+texture = ExtResource( 4 )
+
+[node name="Branch1" type="Sprite" parent="Leaves"]
+position = Vector2( 26.822, -103 )
+texture = ExtResource( 2 )
+
+[node name="Branch2" type="Sprite" parent="Leaves"]
+position = Vector2( 83.9735, -25.5571 )
+texture = ExtResource( 8 )
 
 [node name="FallingLeaves" type="Node2D" parent="."]
 script = ExtResource( 9 )

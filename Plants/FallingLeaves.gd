@@ -11,5 +11,5 @@ func _process(delta):
 		fallen_leaf.rotate(delta)
 		fallen_leaf.modulate.a -= 1.5*delta
 	for deletable_leaf in $".".get_children():
-		if(deletable_leaf.position.y > 300):
-			$".".remove_child(deletable_leaf)
+		if(deletable_leaf.modulate.a < 0.10):
+			(deletable_leaf as Node2D).queue_free()
