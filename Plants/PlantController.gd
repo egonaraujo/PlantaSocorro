@@ -16,14 +16,15 @@ signal plant_hold_up
 
 var isHolding
 var healthy_emmited = false
+var max_visibility = 0.7
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(healthy_fertilizer > 0):
-		$Flowers.hide()
+		$Flowers.modulate.a = 0
 	if(healthy_kills == 0):
-		$Bugs.hide()
+		$Bugs.modulate.a = 0
 	if(healthy_water == 0):
-		$Dried.hide();
+		$Dried.modulate.a = 0
 	for i in range(10):
 		var branchAsset = $Leaves.find_node("Branch%d"%[i])
 		if(!branchAsset):
@@ -50,8 +51,9 @@ func is_healthy():
 func update_status(status_id, increment):
 	if status_id == 0:
 		Fertilizer += increment
+		$Flowers.modulate.a = max_visibility*(float(Fertilizer)/healthy_fertilizer)
 		if(Fertilizer >= healthy_fertilizer):
-			$Flowers.show()
+			$Flowers.modulate.a=1
 	elif status_id == 1:
 		if(increment!= -1):
 			Branches += 1
@@ -62,12 +64,14 @@ func update_status(status_id, increment):
 			$Leaves.get_child(0).remove_child(branchCol)
 	elif status_id == 2:
 		Water += increment
+		$Dried.modulate.a = 1- max_visibility*(float(Water)/healthy_water)
 		if Water >= healthy_water:
-			$Dried.hide()
+			$Dried.modulate.a = 0
 	elif status_id == 3:
 		Bugspray += increment
+		$Bugs.modulate.a = 1- max_visibility*(float(Bugspray)/healthy_kills)
 		if Bugspray >= healthy_kills:
-			$Bugs.hide()
+			$Bugs.modulate.a = 0
 	pass
 
 func disable():

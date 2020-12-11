@@ -148,9 +148,9 @@ func _setSceneFromIndex():
 
 func _setPracticeMode(mode):
 	$PracticeTutorial.show()
-	plant.get_node("Dried").hide()
-	plant.get_node("Flowers").show()
-	plant.get_node("Bugs").hide()
+	plant.get_node("Dried").modulate.a=0
+	plant.get_node("Flowers").modulate.a=1
+	plant.get_node("Bugs").modulate.a=0
 	plant.get_node("Leaves").hide()
 	workstation.get_node("Fertilizer").hide()
 	workstation.get_node("Shears").hide()
@@ -181,17 +181,17 @@ func _setPracticeMode(mode):
 			plant.healthy_branches = 3
 		"Watercan":
 			$PracticeTutorial.show()
-			plant.get_node("Dried").show()
+			plant.get_node("Dried").modulate.a=1
 			workstation.get_node("Watercan").show()
 			plant.healthy_water = 0.6
 		"Bugspray":
 			$PracticeTutorial.show()
-			plant.get_node("Bugs").show()
+			plant.get_node("Bugs").modulate.a=1
 			workstation.get_node("BugSpray").show()
 			plant.healthy_kills = 0.6
 		"Fertilizer":
 			$PracticeTutorial.show()
-			plant.get_node("Flowers").hide()
+			plant.get_node("Flowers").modulate.a=0
 			workstation.get_node("Fertilizer").show()
 			plant.healthy_fertilizer = 5
 		"None":
