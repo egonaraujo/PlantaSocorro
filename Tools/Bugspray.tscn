@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Tools/Tool.gd" type="Script" id=1]
 [ext_resource path="res://Tools/ass-bugspray.png" type="Texture" id=2]
 [ext_resource path="res://Tools/highlight-yellow.png" type="Texture" id=3]
+[ext_resource path="res://Tools/Outline.shader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 4 )
+shader_param/outline_width = 2.0
+shader_param/outline_color = null
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 38.1053, 85.7895 )
@@ -10,6 +16,7 @@ extents = Vector2( 38.1053, 85.7895 )
 [node name="Bugspray" type="Node2D"]
 script = ExtResource( 1 )
 toolID = 3
+tool_asset = NodePath("ass-bugspray")
 
 [node name="highlight" type="Sprite" parent="."]
 position = Vector2( 7.05262, 4.21053 )
@@ -17,6 +24,7 @@ scale = Vector2( 1.3, 1.3 )
 texture = ExtResource( 3 )
 
 [node name="ass-bugspray" type="Sprite" parent="."]
+material = SubResource( 2 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -1,6 +1,7 @@
 extends Node2D
 
 export (int)var toolID = -1;
+export (NodePath)var tool_asset
 
 signal tool_selected
 
@@ -30,3 +31,8 @@ func select():
 func unselect():
 	$highlight.hide()
 
+func required(isRequired:bool):
+	outline(isRequired)
+
+func outline(show:bool):
+	get_node(tool_asset).material.set_shader_param("outline_width", 2 if show  else 0)

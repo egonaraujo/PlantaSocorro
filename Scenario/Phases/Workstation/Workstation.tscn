@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenario/Phases/Workstation/Workstation.gd" type="Script" id=1]
 [ext_resource path="res://Tools/Fertilizer.tscn" type="PackedScene" id=2]
@@ -15,24 +15,16 @@
 [ext_resource path="res://Scenario/Phases/Workstation/TimeAlive.gd" type="Script" id=13]
 [ext_resource path="res://Scenario/Phases/Workstation/gotinea-agua.png" type="Texture" id=14]
 
-[sub_resource type="Environment" id=1]
-background_mode = 4
-glow_enabled = true
-glow_intensity = 0.09
-glow_strength = 1.13
-glow_blend_mode = 0
-glow_hdr_threshold = 1.5
-
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.631868, 0.572727 ), 2.43315, 2.43315, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=4]
 lifetime_randomness = 0.4
 emission_shape = 1
 emission_sphere_radius = 24.41
@@ -44,16 +36,16 @@ initial_velocity = 15.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.2
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 3 )
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.392593, 1 )
 colors = PoolColorArray( 0.41251, 0.144379, 0.77002, 1, 0.682353, 0.129412, 0.8, 0.8, 0.709804, 0.0117647, 1, 0 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 34.12
 flag_disable_z = true
@@ -62,15 +54,15 @@ gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.03
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 6 )
 
-[sub_resource type="Gradient" id=9]
+[sub_resource type="Gradient" id=8]
 colors = PoolColorArray( 0.486275, 0.431373, 0.0705882, 1, 0.486275, 0.431373, 0.0705882, 0 )
 
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
 
-[sub_resource type="ParticlesMaterial" id=11]
+[sub_resource type="ParticlesMaterial" id=10]
 emission_shape = 1
 emission_sphere_radius = 23.83
 flag_disable_z = true
@@ -82,7 +74,7 @@ initial_velocity_random = 0.41
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.03
-color_ramp = SubResource( 10 )
+color_ramp = SubResource( 9 )
 hue_variation = 0.28
 hue_variation_random = 1.0
 
@@ -93,9 +85,6 @@ SpraySound = ExtResource( 8 )
 WaterSound = ExtResource( 9 )
 FertilizerSound = ExtResource( 10 )
 trailLength = 20.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
 
 [node name="ps-background1" type="Sprite" parent="."]
 position = Vector2( -2.76252, -1.2758 )
@@ -137,7 +126,7 @@ volume_db = -13.0
 
 [node name="ShearsTrailLine2D" type="Line2D" parent="."]
 width = 7.0
-width_curve = SubResource( 2 )
+width_curve = SubResource( 1 )
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
 
@@ -146,7 +135,7 @@ emitting = false
 amount = 30
 local_coords = false
 draw_order = 1
-process_material = SubResource( 5 )
+process_material = SubResource( 4 )
 texture = ExtResource( 14 )
 
 [node name="BugSprayParticles2D" type="Particles2D" parent="."]
@@ -156,7 +145,7 @@ lifetime = 0.8
 randomness = 0.3
 local_coords = false
 draw_order = 1
-process_material = SubResource( 8 )
+process_material = SubResource( 7 )
 texture = ExtResource( 12 )
 
 [node name="FertilizerSprayParticles2D" type="Particles2D" parent="."]
@@ -168,6 +157,6 @@ explosiveness = 0.95
 randomness = 0.3
 local_coords = false
 draw_order = 1
-process_material = SubResource( 11 )
+process_material = SubResource( 10 )
 texture = ExtResource( 12 )
 script = ExtResource( 13 )

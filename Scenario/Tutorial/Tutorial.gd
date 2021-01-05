@@ -28,7 +28,7 @@ func _ready():
 	workstation = $PracticeTutorial/Workstation
 	workstation.connect("plant_healthy",self,"_plantHealthy")
 	workstation.set_process_input(false)
-	workstation.ActivePlant = plant
+	workstation.setActivePlant(plant)
 	pass # Replace with function body.
 
 
@@ -156,6 +156,10 @@ func _setPracticeMode(mode):
 	workstation.get_node("Shears").hide()
 	workstation.get_node("Watercan").hide()
 	workstation.get_node("BugSpray").hide()
+	workstation.get_node("Fertilizer").required(true)
+	workstation.get_node("Shears").required(true)
+	workstation.get_node("Watercan").required(true)
+	workstation.get_node("BugSpray").required(true)
 	workstation.disableEffects()
 	plant.healthy_fertilizer = 0
 	plant.healthy_branches = 0

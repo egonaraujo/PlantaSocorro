@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenario/Tutorial/Tutorial.gd" type="Script" id=1]
 [ext_resource path="res://Scenario/Tutorial/tutorial-1.png" type="Texture" id=2]
@@ -15,6 +15,15 @@
 [ext_resource path="res://Scenario/Tutorial/proximo.png" type="Texture" id=13]
 [ext_resource path="res://Fonts/Font_Chewy.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Scenario/Phases/Workstation/ps-background.png" type="Texture" id=15]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/Chewy-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 21
+outline_color = Color( 1, 1, 1, 0 )
+use_filter = true
+font_data = SubResource( 1 )
 
 [node name="Tutorial" type="Control"]
 anchor_right = 1.0
@@ -95,6 +104,20 @@ margin_bottom = 240.0
 texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 4
+
+[node name="TextSkip" type="RichTextLabel" parent="."]
+margin_left = 25.0
+margin_top = 15.0
+margin_right = 149.0
+margin_bottom = 59.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
+meta_underlined = false
+text = "     pular"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextBack" type="RichTextLabel" parent="."]
 visible = false

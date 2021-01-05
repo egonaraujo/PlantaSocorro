@@ -1,7 +1,8 @@
 extends Node2D
 
-export (float)var Fertilizer = 0
+
 export (float)var Branches = 0
+export (float)var Fertilizer = 0
 export (float)var Water = 0
 export (float)var Bugspray = 0
 export (float)var healthy_fertilizer = 10
@@ -9,10 +10,10 @@ export (float)var healthy_branches = 3
 export (float)var healthy_water = 1.6
 export (float)var healthy_kills = 1.6
 
-signal plant_tapped
-signal plant_slash
-signal plant_hold_down
-signal plant_hold_up
+signal plant_watered
+signal plant_slashed
+signal plant_flowered
+signal plant_sprayed
 
 var isHolding
 var healthy_emmited = false
@@ -54,6 +55,7 @@ func update_status(status_id, increment):
 		$Flowers.modulate.a = max_visibility*(float(Fertilizer)/healthy_fertilizer)
 		if(Fertilizer >= healthy_fertilizer):
 			$Flowers.modulate.a=1
+			emit_signal("plant_flowered")
 	elif status_id == 1:
 		if(increment!= -1):
 			Branches += 1
@@ -62,16 +64,20 @@ func update_status(status_id, increment):
 			$Leaves.remove_child(branchAsset)
 			$FallingLeaves.add_child(branchAsset)
 			$Leaves.get_child(0).remove_child(branchCol)
+		if(Branches >= healthy_branches):
+			emit_signal("plant_slashed")
 	elif status_id == 2:
 		Water += increment
 		$Dried.modulate.a = 1- max_visibility*(float(Water)/healthy_water)
 		if Water >= healthy_water:
 			$Dried.modulate.a = 0
+			emit_signal("plant_watered")
 	elif status_id == 3:
 		Bugspray += increment
 		$Bugs.modulate.a = 1- max_visibility*(float(Bugspray)/healthy_kills)
 		if Bugspray >= healthy_kills:
 			$Bugs.modulate.a = 0
+			emit_signal("plant_sprayed")
 	pass
 
 func disable():

@@ -16,13 +16,13 @@ var slashedIndex = -1
 var FertilizerParticleNodes
 
 #PlantScene
-var ActivePlant
+var _activePlant
 
 var trailRemoverTimer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	FertilizerParticleNodes = []
-	ActivePlant = null
+	_activePlant = null
 	$Fertilizer.connect("tool_selected", self, "selectTool")
 	$Shears.connect("tool_selected", self, "selectTool")
 	$Watercan.connect("tool_selected", self, "selectTool")
@@ -35,9 +35,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(isHolding && ActivePlant != null 
+	if(isHolding && _activePlant != null 
 	&& (whichTool ==2 || whichTool ==3)):
-		update_plant(ActivePlant,whichTool, delta)
+		update_plant(_activePlant,whichTool, delta)
 	trailRemoverTimer += delta
 	if (trailRemoverTimer > 0.03
 			&& $ShearsTrailLine2D.get_point_count() > 0):
@@ -64,7 +64,7 @@ func _input(event):
 					2147483647, false,true)
 			var touchPlant = false
 			for dict in collidersTouched:
-				if (dict.collider == ActivePlant.get_node("Plant") ):
+				if (dict.collider == _activePlant.get_node("Plant") ):
 					touchPlant = true
 					break
 			if(touchPlant):
@@ -82,11 +82,11 @@ func _input(event):
 		var stillOnPlant = false
 		var slashedIndex = -1
 		for dict in collidersTouched:
-			if (dict.collider == ActivePlant.get_node("Leaves").get_child(0)):
+			if (dict.collider == _activePlant.get_node("Leaves").get_child(0)):
 				slashedPlant = true
 				slashedIndex = dict.shape
 				break
-			if (dict.collider == ActivePlant.get_node("Plant")):
+			if (dict.collider == _activePlant.get_node("Plant")):
 				stillOnPlant = true
 		if(!stillOnPlant && isHolding):
 			releasePlant()
@@ -101,7 +101,6 @@ func update_plant(plant, status_id, increment):
 	if plant.is_healthy() && !plant.healthy_emmited:
 		plant.healthy_emmited = true;
 		emit_signal("plant_healthy", plant.name)
-		$AudioStreamPlayer.stop()
 		isHolding = false
 
 
@@ -124,14 +123,14 @@ func selectTool(var i):
 
 func tapPlant():
 	if (whichTool == Tools.FERTILIZER):
-		update_plant(ActivePlant,whichTool,1)
+		update_plant(_activePlant,whichTool,1)
 			
 func slashPlant(slashIndex):
 	if(whichTool == Tools.SHEARS):
 		$AudioStreamPlayer.stop()
 		$AudioStreamPlayer.set_stream(SlashSound)
 		$AudioStreamPlayer.play()
-		update_plant(ActivePlant,whichTool,slashIndex)
+		update_plant(_activePlant,whichTool,slashIndex)
 
 func holdPlant():
 	if(whichTool == Tools.WATERCAN && !isHolding):
@@ -186,3 +185,23 @@ func disableEffects():
 	$AudioStreamPlayer.stop()
 	$BugSprayParticles2D.emitting = false
 	$WaterParticles2D.emitting = false
+
+func setActivePlant(plant:Node2D):
+	_activePlant = plant
+	_activePlant.connect("plant_watered", self, "plant_watered")
+	_activePlant.connect("plant_slashed", self, "plant_slashed")
+	_activePlant.connect("plant_flowered", self, "plant_flowered")
+	_activePlant.connect("plant_sprayed", self, "plant_sprayed")
+	$Fertilizer.required(true)
+	$BugSpray.required(true)
+	$Shears.required(true)
+	$Watercan.required(true)
+
+func plant_watered():
+	$Watercan.required(false)
+func plant_slashed():
+	$Shears.required(false)
+func plant_flowered():
+	$Fertilizer.required(false)
+func plant_sprayed():
+	$BugSpray.required(false)

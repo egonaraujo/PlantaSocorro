@@ -17,6 +17,7 @@ __meta__ = {
 
 [node name="Controller" parent="." instance=ExtResource( 1 )]
 next = ExtResource( 3 )
+level = 4
 
 [node name="Plant3" parent="Controller/Workstation/Plants" index="0" instance=ExtResource( 4 )]
 position = Vector2( 388, 217 )
