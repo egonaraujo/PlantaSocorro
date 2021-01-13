@@ -19,69 +19,90 @@ next = ExtResource( 3 )
 level = 2
 
 [node name="Plant1" parent="Controller/Workstation/Plants" index="0" instance=ExtResource( 2 )]
-position = Vector2( 388.441, 216.32 )
+position = Vector2( 792, 427 )
 
 [node name="Plant2" parent="Controller/Workstation/Plants" index="1" instance=ExtResource( 4 )]
-position = Vector2( 389.558, 216.443 )
+visible = false
+position = Vector2( 811, 434 )
 
 [node name="Plant3" parent="Controller/Workstation/Plants" index="2" instance=ExtResource( 2 )]
-position = Vector2( 389.441, 216.184 )
+visible = false
+position = Vector2( 792, 427 )
 
 [node name="Plant4" parent="Controller/Workstation/Plants" index="3" instance=ExtResource( 2 )]
-position = Vector2( 388.181, 216.419 )
+visible = false
+position = Vector2( 792, 427 )
 
 [node name="Plant5" parent="Controller/Workstation/Plants" index="4" instance=ExtResource( 4 )]
-position = Vector2( 388.393, 216.94 )
+position = Vector2( 810.725, 433.042 )
 
 [node name="Check5" parent="Controller/Bar" index="0" instance=ExtResource( 6 )]
-position = Vector2( 564, 30 )
+position = Vector2( 1113.04, 48 )
+scale = Vector2( 2, 2 )
 
 [node name="Check4" parent="Controller/Bar" index="1" instance=ExtResource( 6 )]
-position = Vector2( 481, 30 )
+position = Vector2( 952.998, 48 )
+scale = Vector2( 2, 2 )
 
 [node name="Check3" parent="Controller/Bar" index="2" instance=ExtResource( 6 )]
-position = Vector2( 398, 30 )
+position = Vector2( 792, 48 )
+scale = Vector2( 2, 2 )
 
 [node name="Check2" parent="Controller/Bar" index="3" instance=ExtResource( 6 )]
-position = Vector2( 315, 30 )
+position = Vector2( 629.154, 48 )
+scale = Vector2( 2, 2 )
 
 [node name="Check1" parent="Controller/Bar" index="4" instance=ExtResource( 6 )]
-position = Vector2( 232, 30 )
+position = Vector2( 466.92, 48 )
+scale = Vector2( 2, 2 )
 
 [node name="Connectors" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Connector1" type="TextureRect" parent="Connectors"]
-margin_left = 250.005
-margin_top = 25.0
-margin_right = 296.005
-margin_bottom = 65.0
+margin_left = 500.911
+margin_top = 42.0
+margin_right = 546.911
+margin_bottom = 82.0
+rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Connector4" type="TextureRect" parent="Connectors"]
-margin_left = 500.357
-margin_top = 25.0
-margin_right = 546.357
-margin_bottom = 65.0
+margin_left = 986.972
+margin_top = 42.0
+margin_right = 1032.97
+margin_bottom = 82.0
+rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Connector2" type="TextureRect" parent="Connectors"]
-margin_left = 332.312
-margin_top = 25.0
-margin_right = 378.312
-margin_bottom = 65.0
+margin_left = 663.685
+margin_top = 42.0
+margin_right = 709.685
+margin_bottom = 82.0
+rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Connector3" type="TextureRect" parent="Connectors"]
-margin_left = 417.192
-margin_top = 25.0
-margin_right = 463.192
-margin_bottom = 65.0
+margin_left = 826.148
+margin_top = 42.0
+margin_right = 872.148
+margin_bottom = 82.0
+rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="Controller"]
 

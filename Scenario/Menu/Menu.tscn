@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenario/Menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://Scenario/Menu/btn-play.png" type="Texture" id=2]
-[ext_resource path="res://Scenario/Menu/btn-about.png" type="Texture" id=3]
-[ext_resource path="res://Scenario/Menu/background-menu.png" type="Texture" id=4]
+[ext_resource path="res://Scenario/Menu/logo-ggj@4x.png" type="Texture" id=2]
+[ext_resource path="res://Scenario/Menu/btn-info@4x.png" type="Texture" id=3]
+[ext_resource path="res://Scenario/Menu/tela-inicial@4x.png" type="Texture" id=4]
+[ext_resource path="res://Scenario/Menu/logo-godot@4x.png" type="Texture" id=5]
+[ext_resource path="res://Scenario/Menu/btn-jogar@4x.png" type="Texture" id=6]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -13,32 +15,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = -2.0
-margin_right = 812.0
-margin_bottom = 376.0
+[node name="Background" type="TextureRect" parent="."]
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 3249.0
+margin_bottom = 1501.0
+rect_scale = Vector2( 0.501, 0.501 )
 texture = ExtResource( 4 )
-stretch_mode = 1
+expand = true
+stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Play" type="TextureButton" parent="."]
-margin_left = 288.0
-margin_top = 264.0
-margin_right = 520.0
-margin_bottom = 351.0
-texture_normal = ExtResource( 2 )
+margin_left = 601.606
+margin_top = 536.828
+margin_right = 1425.61
+margin_bottom = 900.828
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Credits" type="TextureButton" parent="."]
-margin_left = 701.466
-margin_top = 1.52588e-05
-margin_right = 812.466
-margin_bottom = 81.0
+margin_left = 1365.56
+margin_top = 26.2893
+margin_right = 1729.57
+margin_bottom = 390.289
+rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GodotLogo" type="TextureRect" parent="."]
+margin_left = 78.9179
+margin_top = 80.0243
+margin_right = 582.919
+margin_bottom = 257.024
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GGJLogo" type="TextureRect" parent="."]
+margin_left = 89.0059
+margin_top = 196.754
+margin_right = 336.007
+margin_bottom = 443.754
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

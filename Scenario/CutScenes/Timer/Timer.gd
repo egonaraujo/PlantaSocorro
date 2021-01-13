@@ -24,7 +24,7 @@ func _process(delta):
 		get_tree().change_scene_to(next)
 	
 	var per_cent = 1-((delay-delayed_time)/delay)
-	var transform = -623*per_cent
+	var transform = -1246*per_cent
 
 	$BG01.set_position(Vector2(0, transform))
 	$BG04.set_position(Vector2(0, transform))

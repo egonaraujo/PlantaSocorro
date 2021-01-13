@@ -7,8 +7,8 @@ var anim_time = 0
 var orig_pos_x
 var orig_pos_bar_y
 
-var center_x = 400
-var center_y = 278
+var center_x = 800
+var center_y = 556
 var radius = 40
 
 var plant :Node2D
@@ -52,7 +52,7 @@ func _process(delta):
 		var per_cent = 1-((anim_end - anim_time)/anim_end)
 		var offset =  119*per_cent
 		$"hand-tilt".set_position(Vector2(orig_pos_x + offset, pos.y))
-		$"hand-stroke".set_position(Vector2(orig_pos_x -15 + offset/2, orig_pos_bar_y))
+		$"hand-stroke".set_position(Vector2(orig_pos_x -30 + offset/2, orig_pos_bar_y))
 		$"hand-stroke".set_scale(Vector2(per_cent, 1.0))
 		if anim_time > anim_end:
 			$"hand-tilt".set_position(Vector2(orig_pos_x, pos.y))
@@ -149,7 +149,7 @@ func _setSceneFromIndex():
 func _setPracticeMode(mode):
 	$PracticeTutorial.show()
 	plant.get_node("Dried").modulate.a=0
-	plant.get_node("Flowers").modulate.a=1
+	plant.get_node("Flowers").hide()
 	plant.get_node("Bugs").modulate.a=0
 	plant.get_node("Leaves").hide()
 	workstation.get_node("Fertilizer").hide()
@@ -195,7 +195,9 @@ func _setPracticeMode(mode):
 			plant.healthy_kills = 0.6
 		"Fertilizer":
 			$PracticeTutorial.show()
-			plant.get_node("Flowers").modulate.a=0
+			for flower in plant.get_node("Flowers").get_children():
+				flower.resetAnim()
+			plant.get_node("Flowers").show()
 			workstation.get_node("Fertilizer").show()
 			plant.healthy_fertilizer = 5
 		"None":

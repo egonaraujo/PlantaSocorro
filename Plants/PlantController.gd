@@ -21,7 +21,8 @@ var max_visibility = 0.7
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(healthy_fertilizer > 0):
-		$Flowers.modulate.a = 0
+		for flower in $Flowers.get_children():
+			flower.resetAnim()
 	if(healthy_kills == 0):
 		$Bugs.modulate.a = 0
 	if(healthy_water == 0):
@@ -52,9 +53,11 @@ func is_healthy():
 func update_status(status_id, increment):
 	if status_id == 0:
 		Fertilizer += increment
-		$Flowers.modulate.a = max_visibility*(float(Fertilizer)/healthy_fertilizer)
+		for flower in $Flowers.get_children():
+			flower.setAnimPercent(float(Fertilizer)/healthy_fertilizer)
 		if(Fertilizer >= healthy_fertilizer):
-			$Flowers.modulate.a=1
+			for flower in $Flowers.get_children():
+				flower.setAnimPercent(1)
 			emit_signal("plant_flowered")
 	elif status_id == 1:
 		if(increment!= -1):

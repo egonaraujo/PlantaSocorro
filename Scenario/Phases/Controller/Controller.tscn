@@ -14,18 +14,23 @@ __meta__ = {
 }
 
 [node name="ClockBG" type="TextureRect" parent="."]
-margin_left = 668.0
-margin_top = -18.0
-margin_right = 826.0
-margin_bottom = 140.0
+margin_left = 1337.49
+margin_top = -36.6617
+margin_right = 1495.49
+margin_bottom = 121.338
+rect_scale = Vector2( 2.01571, 2.01571 )
 texture = ExtResource( 2 )
 stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ClockArrow" type="TextureRect" parent="."]
-margin_left = 730.173
-margin_top = -74.2891
-margin_right = 886.173
-margin_bottom = 82.7109
+margin_left = 1527.96
+margin_top = -50.962
+margin_right = 1683.96
+margin_bottom = 106.038
+rect_scale = Vector2( 1.93214, 1.93214 )
 rect_pivot_offset = Vector2( 78, 78 )
 texture = ExtResource( 1 )
 stretch_mode = 1

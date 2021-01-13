@@ -1,29 +1,35 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenario/Tutorial/Tutorial.gd" type="Script" id=1]
-[ext_resource path="res://Scenario/Tutorial/tutorial-1.png" type="Texture" id=2]
-[ext_resource path="res://Scenario/Tutorial/tutorial-2.png" type="Texture" id=3]
-[ext_resource path="res://Scenario/Tutorial/tutorial-3.png" type="Texture" id=4]
-[ext_resource path="res://Scenario/Tutorial/tutorial-4.png" type="Texture" id=5]
-[ext_resource path="res://Scenario/Tutorial/btn-small-play.png" type="Texture" id=6]
+[ext_resource path="res://Scenario/Tutorial/tela-tutorial-2@4x.png" type="Texture" id=2]
+[ext_resource path="res://Scenario/Tutorial/tela-tutorial-1@4x.png" type="Texture" id=3]
+[ext_resource path="res://Scenario/Tutorial/tela-tutorial-3@4x.png" type="Texture" id=4]
+[ext_resource path="res://Scenario/Tutorial/tela-tutorial-4@4x.png" type="Texture" id=5]
+[ext_resource path="res://Scenario/Tutorial/btn-play@4x.png" type="Texture" id=6]
 [ext_resource path="res://Scenario/Tutorial/hand-tilt.png" type="Texture" id=7]
 [ext_resource path="res://Scenario/Tutorial/hand-stroke.png" type="Texture" id=8]
 [ext_resource path="res://Scenario/Tutorial/hand-upside.png" type="Texture" id=9]
 [ext_resource path="res://Scenario/Tutorial/hand-click.png" type="Texture" id=10]
 [ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenario/Phases/Workstation/Workstation.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenario/Tutorial/proximo.png" type="Texture" id=13]
+[ext_resource path="res://Fonts/Chewy-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Fonts/Font_Chewy.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Scenario/Phases/Workstation/ps-background.png" type="Texture" id=15]
 
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://Fonts/Chewy-Regular.ttf"
-
-[sub_resource type="DynamicFont" id=2]
-size = 21
+[sub_resource type="DynamicFont" id=1]
+size = 81
 outline_color = Color( 1, 1, 1, 0 )
 use_filter = true
-font_data = SubResource( 1 )
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Fonts/Chewy-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 42
+outline_color = Color( 1, 1, 1, 0 )
+use_filter = true
+font_data = SubResource( 2 )
 
 [node name="Tutorial" type="Control"]
 anchor_right = 1.0
@@ -38,79 +44,97 @@ position = Vector2( -2.15091, 0 )
 scale = Vector2( 1.003, 1.003 )
 
 [node name="tutorial-1" type="Sprite" parent="BGs"]
-texture = ExtResource( 2 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
 centered = false
 
 [node name="tutorial-2" type="Sprite" parent="BGs"]
 visible = false
-texture = ExtResource( 3 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 centered = false
 
 [node name="tutorial-3" type="Sprite" parent="BGs"]
 visible = false
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 centered = false
 
 [node name="tutorial-4" type="Sprite" parent="BGs"]
 visible = false
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 centered = false
 
-[node name="proximo" type="Sprite" parent="BGs/tutorial-4"]
-position = Vector2( 747.605, 338.261 )
-texture = ExtResource( 13 )
+[node name="ProximoText" type="RichTextLabel" parent="BGs/tutorial-4"]
+margin_left = 2873.0
+margin_top = 1302.22
+margin_right = 3152.0
+margin_bottom = 1420.22
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
+text = "próximo"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayScene" type="Sprite" parent="BGs"]
 visible = false
 self_modulate = Color( 0.388235, 0.388235, 0.470588, 1 )
-position = Vector2( 404.297, 188.458 )
-scale = Vector2( 0.510322, 0.510322 )
+position = Vector2( 812.427, 374.344 )
 texture = ExtResource( 15 )
 
 [node name="hand-tilt" type="Sprite" parent="."]
-position = Vector2( 367.104, 253.682 )
+position = Vector2( 734.927, 509.316 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="hand-stroke" type="Sprite" parent="."]
-position = Vector2( 402.893, 225.261 )
+position = Vector2( 803.537, 451.853 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
 [node name="hand-upside" type="Sprite" parent="."]
 visible = false
-position = Vector2( 399.735, 277.893 )
+position = Vector2( 800, 555 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 
 [node name="hand-click" type="Sprite" parent="."]
 visible = false
-position = Vector2( 392.367, 224.209 )
+position = Vector2( 784, 448 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 10 )
 
 [node name="PracticeTutorial" type="Node2D" parent="."]
 visible = false
 position = Vector2( -2.15091, 0 )
-scale = Vector2( 1.003, 1.003 )
 
 [node name="Workstation" parent="PracticeTutorial" instance=ExtResource( 12 )]
 
 [node name="Cactus" parent="PracticeTutorial/Workstation/Plants" index="0" instance=ExtResource( 11 )]
-position = Vector2( 402.09, 210.557 )
+position = Vector2( 792, 428 )
 
 [node name="btn-small-play" type="TextureButton" parent="."]
 visible = false
-margin_left = 349.0
-margin_top = 127.0
-margin_right = 468.0
-margin_bottom = 240.0
+margin_left = 630.935
+margin_top = 193.0
+margin_right = 1018.94
+margin_bottom = 574.0
 texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextSkip" type="RichTextLabel" parent="."]
 margin_left = 25.0
 margin_top = 15.0
-margin_right = 149.0
-margin_bottom = 59.0
-custom_fonts/normal_font = SubResource( 2 )
+margin_right = 276.0
+margin_bottom = 178.0
+custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
 meta_underlined = false
 text = "     pular"
@@ -121,11 +145,10 @@ __meta__ = {
 
 [node name="TextBack" type="RichTextLabel" parent="."]
 visible = false
-anchor_right = 0.183
-margin_left = 23.959
-margin_top = 325.918
-margin_right = 325.687
-margin_bottom = 427.371
+margin_left = 50.0
+margin_top = 650.0
+margin_right = 355.0
+margin_bottom = 751.0
 rect_clip_content = false
 custom_fonts/normal_font = ExtResource( 14 )
 custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
@@ -135,28 +158,28 @@ __meta__ = {
 }
 
 [node name="Skip" type="TextureButton" parent="."]
-margin_left = 2.84409
-margin_top = 4.78999
-margin_right = 325.844
-margin_bottom = 78.79
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 318.0
+margin_bottom = 132.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Next" type="TextureButton" parent="."]
-margin_left = 690.0
-margin_top = 310.0
-margin_right = 810.0
-margin_bottom = 369.0
+margin_left = 1323.0
+margin_top = 587.0
+margin_right = 1624.0
+margin_bottom = 751.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Previsous" type="TextureButton" parent="."]
-margin_left = 7.84491
-margin_top = 316.316
-margin_right = 127.845
-margin_bottom = 375.316
+margin_left = 6.0
+margin_top = 635.0
+margin_right = 310.0
+margin_bottom = 747.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

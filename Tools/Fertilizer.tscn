@@ -5,13 +5,13 @@
 [ext_resource path="res://Tools/highlight-purple.png" type="Texture" id=3]
 [ext_resource path="res://Tools/Outline.shader" type="Shader" id=4]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
 shader_param/outline_width = 2.0
 shader_param/outline_color = null
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 61.5457, 77.3907 )
+extents = Vector2( 123.491, 162.219 )
 
 [node name="Fertilizer" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,17 +20,17 @@ tool_asset = NodePath("ass-fertilizer")
 
 [node name="highlight" type="Sprite" parent="."]
 position = Vector2( 7.56302, -4.41174 )
-scale = Vector2( 1.6, 1.6 )
+scale = Vector2( 3.2, 3.2 )
 texture = ExtResource( 3 )
 
 [node name="ass-fertilizer" type="Sprite" parent="."]
-material = SubResource( 3 )
+material = SubResource( 1 )
 position = Vector2( 1.88365, 1.77922 )
-scale = Vector2( 1.0151, 1.0151 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 5.86899, -5.34398 )
+position = Vector2( 12.8018, -7.86499 )
 shape = SubResource( 2 )

@@ -16,7 +16,7 @@
 [ext_resource path="res://Scenario/Phases/Workstation/gotinea-agua.png" type="Texture" id=14]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.631868, 0.572727 ), 2.43315, 2.43315, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.631868, 0.572727 ), 2.43315, 2.43315, 0, 0, Vector2( 0.990385, 0.963636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -7.04794, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -27,15 +27,15 @@ gradient = SubResource( 2 )
 [sub_resource type="ParticlesMaterial" id=4]
 lifetime_randomness = 0.4
 emission_shape = 1
-emission_sphere_radius = 24.41
+emission_sphere_radius = 70.49
 flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 spread = 24.31
-gravity = Vector3( 0, 98, 0 )
-initial_velocity = 15.0
+gravity = Vector3( 0, 150, 0 )
+initial_velocity = 35.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 0.2
+scale = 0.45
 color_ramp = SubResource( 3 )
 
 [sub_resource type="Gradient" id=5]
@@ -47,13 +47,13 @@ gradient = SubResource( 5 )
 
 [sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 1
-emission_sphere_radius = 34.12
+emission_sphere_radius = 100.0
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 0.03
+scale = 0.07
 color_ramp = SubResource( 6 )
 
 [sub_resource type="Gradient" id=8]
@@ -64,7 +64,7 @@ gradient = SubResource( 8 )
 
 [sub_resource type="ParticlesMaterial" id=10]
 emission_shape = 1
-emission_sphere_radius = 23.83
+emission_sphere_radius = 100.0
 flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 spread = 90.0
@@ -73,7 +73,7 @@ initial_velocity = 20.0
 initial_velocity_random = 0.41
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 0.03
+scale = 0.07
 color_ramp = SubResource( 9 )
 hue_variation = 0.28
 hue_variation_random = 1.0
@@ -88,33 +88,33 @@ trailLength = 20.0
 
 [node name="ps-background1" type="Sprite" parent="."]
 position = Vector2( -2.76252, -1.2758 )
-scale = Vector2( 0.502912, 0.502912 )
+scale = Vector2( 1.00311, 1.00311 )
 texture = ExtResource( 7 )
 centered = false
 
 [node name="ps-background2" type="Sprite" parent="."]
 position = Vector2( -1.79804, 0 )
-scale = Vector2( 0.502061, 0.502061 )
+scale = Vector2( 1.00206, 1.00206 )
 texture = ExtResource( 6 )
 centered = false
 
 [node name="Fertilizer" parent="." instance=ExtResource( 2 )]
-position = Vector2( 214.126, 140.593 )
+position = Vector2( 384.762, 256.676 )
 rotation = 0.261799
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Shears" parent="." instance=ExtResource( 4 )]
-position = Vector2( 580.075, 142.136 )
+position = Vector2( 1204.16, 254.994 )
 rotation = -0.139285
 scale = Vector2( 0.7, 0.7 )
 
 [node name="Watercan" parent="." instance=ExtResource( 3 )]
-position = Vector2( 608.692, 298.808 )
+position = Vector2( 1201.53, 581.821 )
 rotation = -0.249618
 scale = Vector2( 0.7, 0.7 )
 
 [node name="BugSpray" parent="." instance=ExtResource( 5 )]
-position = Vector2( 200.786, 299.499 )
+position = Vector2( 378.367, 571.847 )
 rotation = 0.297187
 scale = Vector2( 0.7, 0.7 )
 
@@ -125,7 +125,7 @@ pause_mode = 1
 volume_db = -13.0
 
 [node name="ShearsTrailLine2D" type="Line2D" parent="."]
-width = 7.0
+width = 20.0
 width_curve = SubResource( 1 )
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -133,6 +133,7 @@ joint_mode = 2
 [node name="WaterParticles2D" type="Particles2D" parent="."]
 emitting = false
 amount = 30
+visibility_rect = Rect2( -200, -200, 400, 400 )
 local_coords = false
 draw_order = 1
 process_material = SubResource( 4 )
@@ -143,6 +144,7 @@ emitting = false
 amount = 70
 lifetime = 0.8
 randomness = 0.3
+visibility_rect = Rect2( -200, -200, 400, 400 )
 local_coords = false
 draw_order = 1
 process_material = SubResource( 7 )
@@ -150,11 +152,12 @@ texture = ExtResource( 12 )
 
 [node name="FertilizerSprayParticles2D" type="Particles2D" parent="."]
 emitting = false
-amount = 50
+amount = 80
 lifetime = 1.4
 one_shot = true
 explosiveness = 0.95
 randomness = 0.3
+visibility_rect = Rect2( -200, -200, 400, 400 )
 local_coords = false
 draw_order = 1
 process_material = SubResource( 10 )

@@ -1,43 +1,102 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Plants/PlantController.gd" type="Script" id=1]
-[ext_resource path="res://Plants/Araca/plant-araca-branch2.png" type="Texture" id=2]
-[ext_resource path="res://Plants/Araca/plant-araca-watercan.png" type="Texture" id=3]
-[ext_resource path="res://Plants/Araca/plant-araca-branch1.png" type="Texture" id=4]
-[ext_resource path="res://Plants/Araca/plant-araca-fertilizer.png" type="Texture" id=5]
+[ext_resource path="res://Plants/Araca/ass-araca-galho-2@4x.png" type="Texture" id=2]
+[ext_resource path="res://Plants/Araca/ass-araca@4x.png" type="Texture" id=3]
+[ext_resource path="res://Plants/Araca/ass-araca-galho-1@4x.png" type="Texture" id=4]
+[ext_resource path="res://Plants/Araca/ass-araca-seco@4x.png" type="Texture" id=5]
 [ext_resource path="res://Plants/Araca/plant-araca-bugspray.png" type="Texture" id=6]
-[ext_resource path="res://Plants/Araca/plant-araca-branch3.png" type="Texture" id=7]
-[ext_resource path="res://Plants/Araca/plant-araca.png" type="Texture" id=8]
+[ext_resource path="res://Plants/Araca/ass-araca-galho-3@4x.png" type="Texture" id=7]
+[ext_resource path="res://Plants/Araca/ass-araca-fruta@4x.png" type="Texture" id=8]
 [ext_resource path="res://Plants/FallingLeaves.gd" type="Script" id=9]
+[ext_resource path="res://Plants/Flowers.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 68.8109
-height = 151.429
+radius = 123.723
+height = 353.016
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 21.2348, 45.8337 )
+extents = Vector2( 42.0627, 90.516 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 34.6469, 19.5081 )
+extents = Vector2( 72.1019, 33.3378 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 27.7015, 49.7193 )
+extents = Vector2( 51.5538, 105.837 )
 
 [node name="Araca" type="Node2D"]
 script = ExtResource( 1 )
 healthy_fertilizer = 12.0
 
 [node name="plant-araca" type="Sprite" parent="."]
-texture = ExtResource( 8 )
-
-[node name="Dried" type="Sprite" parent="."]
-position = Vector2( 2.556, 0 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
-[node name="Flowers" type="Sprite" parent="."]
+[node name="Dried" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
+[node name="Flowers" type="Node2D" parent="."]
+
+[node name="Flower1" type="Sprite" parent="Flowers"]
+position = Vector2( -12.2874, 111.508 )
+rotation = 0.385207
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+script = ExtResource( 10 )
+startPos = Vector2( -8, 93 )
+
+[node name="Flower2" type="Sprite" parent="Flowers"]
+position = Vector2( 11.2095, 106.049 )
+rotation = -0.439552
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+script = ExtResource( 10 )
+startPos = Vector2( 0, 95 )
+
+[node name="Flower3" type="Sprite" parent="Flowers"]
+position = Vector2( 5.99767, 29.8122 )
+rotation = -0.00520658
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+script = ExtResource( 10 )
+startPos = Vector2( 0, 12 )
+
+[node name="Flower4" type="Sprite" parent="Flowers"]
+position = Vector2( 19.8279, 13.9354 )
+rotation = -0.806017
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+script = ExtResource( 10 )
+startPos = Vector2( 2, 4 )
+
+[node name="Flower5" type="Sprite" parent="Flowers"]
+position = Vector2( 24.1482, -110.529 )
+rotation = -1.15194
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+script = ExtResource( 10 )
+startPos = Vector2( 5, -112 )
+
+[node name="Flower6" type="Sprite" parent="Flowers"]
+position = Vector2( -11.8476, -95.8299 )
+rotation = 0.991743
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+script = ExtResource( 10 )
+startPos = Vector2( -1, -112 )
+
+[node name="Flower7" type="Sprite" parent="Flowers"]
+position = Vector2( 10.7436, -94.8829 )
+rotation = -0.0758973
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+script = ExtResource( 10 )
+startPos = Vector2( -1, -112 )
+
 [node name="Bugs" type="Sprite" parent="."]
+position = Vector2( 0.814514, -19.5482 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
 [node name="Plant" type="Area2D" parent="."]
@@ -50,39 +109,39 @@ position = Vector2( 1.16638, 12.8299 )
 shape = SubResource( 1 )
 
 [node name="Leaves" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Colliders" type="Area2D" parent="Leaves"]
 
 [node name="Leaf0Collider" type="CollisionShape2D" parent="Leaves/Colliders"]
-position = Vector2( -45.474, -13.5602 )
+position = Vector2( -97.8261, -30.2387 )
 rotation = -1.36177
 shape = SubResource( 2 )
 
 [node name="Leaf1Collider" type="CollisionShape2D" parent="Leaves/Colliders"]
-position = Vector2( 41.2835, -59.8922 )
+position = Vector2( 68.4907, -130.22 )
 rotation = 0.0417995
 scale = Vector2( 1.04329, 0.97076 )
 shape = SubResource( 3 )
 
 [node name="Leaf2Collider" type="CollisionShape2D" parent="Leaves/Colliders"]
-position = Vector2( 42.2504, 35.1042 )
+position = Vector2( 73.9396, 93.2012 )
 rotation = -1.37475
 scale = Vector2( 0.828634, 0.745471 )
 shape = SubResource( 4 )
 
 [node name="Branch0" type="Sprite" parent="Leaves"]
-position = Vector2( -44.8981, -9.45378 )
+position = Vector2( -96.3237, -31.2286 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
 [node name="Branch1" type="Sprite" parent="Leaves"]
-position = Vector2( 41.3179, -57.0644 )
+position = Vector2( 70.7569, -124.94 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="Branch2" type="Sprite" parent="Leaves"]
-position = Vector2( 40.4862, 29.905 )
+position = Vector2( 71.6671, 99.1373 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 
 [node name="FallingLeaves" type="Node2D" parent="."]
