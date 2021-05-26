@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenario/Phases/Workstation/Workstation.gd" type="Script" id=1]
 [ext_resource path="res://Tools/Fertilizer.tscn" type="PackedScene" id=2]
@@ -11,12 +11,13 @@
 [ext_resource path="res://Scenario/Phases/Workstation/Watercan.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Scenario/Phases/Workstation/FertilizerShake.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Scenario/Phases/Workstation/Slash.ogg" type="AudioStream" id=11]
-[ext_resource path="res://BasicAssets/Circle.png" type="Texture" id=12]
+[ext_resource path="res://Scenario/Phases/Workstation/ass-fertilizantexhdpi.png" type="Texture" id=12]
 [ext_resource path="res://Scenario/Phases/Workstation/TimeAlive.gd" type="Script" id=13]
-[ext_resource path="res://Scenario/Phases/Workstation/gotinea-agua.png" type="Texture" id=14]
+[ext_resource path="res://Scenario/Phases/Workstation/ass-aguaxhdpi.png" type="Texture" id=14]
+[ext_resource path="res://Scenario/Phases/Workstation/ass-venenoxhdpi.png" type="Texture" id=15]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.631868, 0.572727 ), 2.43315, 2.43315, 0, 0, Vector2( 0.990385, 0.963636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -7.04794, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.631868, 0.572727 ), 2.43315, 2.43315, 0, 0, Vector2( 0.9375, 0.963636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -7.04794, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -27,7 +28,7 @@ gradient = SubResource( 2 )
 [sub_resource type="ParticlesMaterial" id=4]
 lifetime_randomness = 0.4
 emission_shape = 1
-emission_sphere_radius = 70.49
+emission_sphere_radius = 120.0
 flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 spread = 24.31
@@ -39,44 +40,56 @@ scale = 0.45
 color_ramp = SubResource( 3 )
 
 [sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0, 0.392593, 1 )
-colors = PoolColorArray( 0.41251, 0.144379, 0.77002, 1, 0.682353, 0.129412, 0.8, 0.8, 0.709804, 0.0117647, 1, 0 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=6]
 gradient = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="Curve" id=7]
+min_value = -200.0
+max_value = 300.0
+_data = [ Vector2( 0, 300 ), 0.0, 0.0, 0, 0, Vector2( 0.326087, 4.54544 ), -1161.62, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 1
-emission_sphere_radius = 100.0
+emission_sphere_radius = 50.0
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 0.07
+radial_accel = 300.0
+radial_accel_curve = SubResource( 8 )
+angle = 180.0
+angle_random = 1.0
+scale = 0.9
+scale_random = 0.5
 color_ramp = SubResource( 6 )
 
-[sub_resource type="Gradient" id=8]
-colors = PoolColorArray( 0.486275, 0.431373, 0.0705882, 1, 0.486275, 0.431373, 0.0705882, 0 )
+[sub_resource type="Gradient" id=10]
+colors = PoolColorArray( 1, 1, 1, 1, 0.486275, 0.431373, 0.0705882, 0 )
 
-[sub_resource type="GradientTexture" id=9]
-gradient = SubResource( 8 )
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=12]
 emission_shape = 1
-emission_sphere_radius = 100.0
+emission_sphere_radius = 126.72
 flag_disable_z = true
 direction = Vector3( 0, 1, 0 )
 spread = 90.0
 gravity = Vector3( 0, 65, 0 )
-initial_velocity = 20.0
-initial_velocity_random = 0.41
+initial_velocity = 50.0
+initial_velocity_random = 0.24
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 0.07
-color_ramp = SubResource( 9 )
-hue_variation = 0.28
-hue_variation_random = 1.0
+angle = 180.0
+angle_random = 1.0
+scale = 0.7
+color_ramp = SubResource( 11 )
 
 [node name="Workstation" type="Node2D"]
 script = ExtResource( 1 )
@@ -86,46 +99,46 @@ WaterSound = ExtResource( 9 )
 FertilizerSound = ExtResource( 10 )
 trailLength = 20.0
 
-[node name="ps-background1" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 position = Vector2( -2.76252, -1.2758 )
-scale = Vector2( 1.00311, 1.00311 )
+scale = Vector2( 2.003, 2.003 )
 texture = ExtResource( 7 )
 centered = false
 
 [node name="ps-background2" type="Sprite" parent="."]
 position = Vector2( -1.79804, 0 )
-scale = Vector2( 1.00206, 1.00206 )
+scale = Vector2( 2.003, 2.003 )
 texture = ExtResource( 6 )
 centered = false
 
+[node name="Plants" type="Node2D" parent="."]
+
 [node name="Fertilizer" parent="." instance=ExtResource( 2 )]
-position = Vector2( 384.762, 256.676 )
-rotation = 0.261799
+position = Vector2( 808.147, 584.365 )
+rotation = -0.341611
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Shears" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1204.16, 254.994 )
+position = Vector2( 2332.22, 588.482 )
 rotation = -0.139285
 scale = Vector2( 0.7, 0.7 )
 
 [node name="Watercan" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1201.53, 581.821 )
+position = Vector2( 2338.29, 1216.9 )
 rotation = -0.249618
 scale = Vector2( 0.7, 0.7 )
 
 [node name="BugSpray" parent="." instance=ExtResource( 5 )]
-position = Vector2( 378.367, 571.847 )
-rotation = 0.297187
+position = Vector2( 798.853, 1195.33 )
+rotation = 0.277418
 scale = Vector2( 0.7, 0.7 )
-
-[node name="Plants" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 1
 volume_db = -13.0
 
 [node name="ShearsTrailLine2D" type="Line2D" parent="."]
-width = 20.0
+width = 40.0
 width_curve = SubResource( 1 )
 default_color = Color( 1, 1, 1, 1 )
 joint_mode = 2
@@ -133,7 +146,7 @@ joint_mode = 2
 [node name="WaterParticles2D" type="Particles2D" parent="."]
 emitting = false
 amount = 30
-visibility_rect = Rect2( -200, -200, 400, 400 )
+visibility_rect = Rect2( -500, -500, 1000, 1000 )
 local_coords = false
 draw_order = 1
 process_material = SubResource( 4 )
@@ -141,25 +154,24 @@ texture = ExtResource( 14 )
 
 [node name="BugSprayParticles2D" type="Particles2D" parent="."]
 emitting = false
-amount = 70
-lifetime = 0.8
+amount = 80
 randomness = 0.3
-visibility_rect = Rect2( -200, -200, 400, 400 )
+visibility_rect = Rect2( -500, -500, 1000, 1000 )
 local_coords = false
 draw_order = 1
-process_material = SubResource( 7 )
-texture = ExtResource( 12 )
+process_material = SubResource( 9 )
+texture = ExtResource( 15 )
 
 [node name="FertilizerSprayParticles2D" type="Particles2D" parent="."]
 emitting = false
-amount = 80
-lifetime = 1.4
+amount = 60
+lifetime = 1.8
 one_shot = true
 explosiveness = 0.95
 randomness = 0.3
-visibility_rect = Rect2( -200, -200, 400, 400 )
+visibility_rect = Rect2( -500, -500, 1000, 1000 )
 local_coords = false
 draw_order = 1
-process_material = SubResource( 10 )
+process_material = SubResource( 12 )
 texture = ExtResource( 12 )
 script = ExtResource( 13 )

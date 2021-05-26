@@ -7,12 +7,12 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
-shader_param/outline_width = 2.0
 shader_param/outline_color = null
+shader_param/enabled = true
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 91.5282
-height = 280.25
+radius = 182.0
+height = 560.0
 
 [node name="Shears" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,12 +21,12 @@ tool_asset = NodePath("ass-shears")
 
 [node name="highlight" type="Sprite" parent="."]
 position = Vector2( 1.2454, 8.70337 )
-scale = Vector2( 2.6, 2.6 )
+scale = Vector2( 5.2, 5.2 )
 texture = ExtResource( 3 )
 
 [node name="ass-shears" type="Sprite" parent="."]
 material = SubResource( 1 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]

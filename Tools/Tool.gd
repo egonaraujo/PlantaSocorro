@@ -35,4 +35,4 @@ func required(isRequired:bool):
 	outline(isRequired)
 
 func outline(show:bool):
-	get_node(tool_asset).material.set_shader_param("outline_width", 2 if show  else 0)
+	get_node(tool_asset).material.set_shader_param("enabled", true if show  else false)

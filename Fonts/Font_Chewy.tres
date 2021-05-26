@@ -3,7 +3,8 @@
 [ext_resource path="res://Fonts/Chewy-Regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 41
+size = 84
 outline_color = Color( 1, 1, 1, 0 )
 use_filter = true
+extra_spacing_char = -2
 font_data = ExtResource( 1 )

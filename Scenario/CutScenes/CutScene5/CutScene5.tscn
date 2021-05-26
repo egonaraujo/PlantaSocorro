@@ -15,6 +15,6 @@ __meta__ = {
 next = ExtResource( 3 )
 
 [node name="badge-success" type="Sprite" parent="."]
-position = Vector2( 832, 408 )
-scale = Vector2( 2, 2 )
+position = Vector2( 1544, 776 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )

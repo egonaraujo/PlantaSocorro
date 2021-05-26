@@ -5,101 +5,115 @@
 [ext_resource path="res://Plants/Araca/ass-araca@4x.png" type="Texture" id=3]
 [ext_resource path="res://Plants/Araca/ass-araca-galho-1@4x.png" type="Texture" id=4]
 [ext_resource path="res://Plants/Araca/ass-araca-seco@4x.png" type="Texture" id=5]
-[ext_resource path="res://Plants/Araca/plant-araca-bugspray.png" type="Texture" id=6]
+[ext_resource path="res://Plants/Insects.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Plants/Araca/ass-araca-galho-3@4x.png" type="Texture" id=7]
 [ext_resource path="res://Plants/Araca/ass-araca-fruta@4x.png" type="Texture" id=8]
 [ext_resource path="res://Plants/FallingLeaves.gd" type="Script" id=9]
 [ext_resource path="res://Plants/Flowers.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 123.723
-height = 353.016
+radius = 247.0
+height = 706.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 42.0627, 90.516 )
+extents = Vector2( 84.063, 180.516 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 72.1019, 33.3378 )
+extents = Vector2( 144.011, 66.7571 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 51.5538, 105.837 )
+extents = Vector2( 76.0278, 163.423 )
 
 [node name="Araca" type="Node2D"]
 script = ExtResource( 1 )
 healthy_fertilizer = 12.0
 
 [node name="plant-araca" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
 [node name="Dried" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Flowers" type="Node2D" parent="."]
 
 [node name="Flower1" type="Sprite" parent="Flowers"]
-position = Vector2( -12.2874, 111.508 )
+position = Vector2( -21.4897, 246.282 )
 rotation = 0.385207
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 script = ExtResource( 10 )
-startPos = Vector2( -8, 93 )
+startPos = Vector2( -21, 216 )
 
 [node name="Flower2" type="Sprite" parent="Flowers"]
-position = Vector2( 11.2095, 106.049 )
+position = Vector2( 13.5878, 238.631 )
 rotation = -0.439552
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 script = ExtResource( 10 )
-startPos = Vector2( 0, 95 )
+startPos = Vector2( -8, 213 )
 
 [node name="Flower3" type="Sprite" parent="Flowers"]
-position = Vector2( 5.99767, 29.8122 )
-rotation = -0.00520658
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( -28.1029, 72.627 )
+rotation = 0.280892
 texture = ExtResource( 8 )
 script = ExtResource( 10 )
-startPos = Vector2( 0, 12 )
+startPos = Vector2( -30, 40 )
 
 [node name="Flower4" type="Sprite" parent="Flowers"]
-position = Vector2( 19.8279, 13.9354 )
+position = Vector2( 9.00966, 48.0545 )
 rotation = -0.806017
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 script = ExtResource( 10 )
-startPos = Vector2( 2, 4 )
+startPos = Vector2( -21, 33 )
 
 [node name="Flower5" type="Sprite" parent="Flowers"]
-position = Vector2( 24.1482, -110.529 )
+position = Vector2( 25.685, -103.46 )
 rotation = -1.15194
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 script = ExtResource( 10 )
-startPos = Vector2( 5, -112 )
+startPos = Vector2( -4, -109 )
 
 [node name="Flower6" type="Sprite" parent="Flowers"]
-position = Vector2( -11.8476, -95.8299 )
+position = Vector2( -49.8384, -69.0411 )
 rotation = 0.991743
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 script = ExtResource( 10 )
-startPos = Vector2( -1, -112 )
+startPos = Vector2( -26, -99 )
 
 [node name="Flower7" type="Sprite" parent="Flowers"]
-position = Vector2( 10.7436, -94.8829 )
+position = Vector2( -10.7715, -70.2942 )
 rotation = -0.0758973
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 script = ExtResource( 10 )
-startPos = Vector2( -1, -112 )
+startPos = Vector2( -20, -103 )
 
-[node name="Bugs" type="Sprite" parent="."]
-position = Vector2( 0.814514, -19.5482 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 6 )
+[node name="Bugs" type="Node2D" parent="."]
+
+[node name="Insects" parent="Bugs" instance=ExtResource( 6 )]
+position = Vector2( -107.136, 43.572 )
+rotation = -1.028
+scale = Vector2( 0.4, 0.4 )
+
+[node name="Insects2" parent="Bugs" instance=ExtResource( 6 )]
+position = Vector2( -23.031, -146.201 )
+rotation = -0.446804
+scale = Vector2( 0.514, 0.514 )
+
+[node name="Insects3" parent="Bugs" instance=ExtResource( 6 )]
+position = Vector2( 90.1, -176.928 )
+rotation = 0.0802851
+scale = Vector2( 0.514, 0.514 )
+
+[node name="Insects4" parent="Bugs" instance=ExtResource( 6 )]
+position = Vector2( 18.423, -308.878 )
+rotation = 0.567232
+scale = Vector2( 0.514, 0.514 )
+
+[node name="Insects5" parent="Bugs" instance=ExtResource( 6 )]
+position = Vector2( 20.223, -17.242 )
+rotation = 0.551524
+scale = Vector2( 0.344, 0.344 )
 
 [node name="Plant" type="Area2D" parent="."]
+visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -111,37 +125,33 @@ shape = SubResource( 1 )
 [node name="Leaves" type="Node2D" parent="."]
 
 [node name="Colliders" type="Area2D" parent="Leaves"]
+visible = false
 
 [node name="Leaf0Collider" type="CollisionShape2D" parent="Leaves/Colliders"]
-position = Vector2( -97.8261, -30.2387 )
+position = Vector2( -194, -60 )
 rotation = -1.36177
 shape = SubResource( 2 )
 
 [node name="Leaf1Collider" type="CollisionShape2D" parent="Leaves/Colliders"]
-position = Vector2( 68.4907, -130.22 )
+position = Vector2( 136, -260 )
 rotation = 0.0417995
-scale = Vector2( 1.04329, 0.97076 )
 shape = SubResource( 3 )
 
 [node name="Leaf2Collider" type="CollisionShape2D" parent="Leaves/Colliders"]
-position = Vector2( 73.9396, 93.2012 )
+position = Vector2( 147, 186 )
 rotation = -1.37475
-scale = Vector2( 0.828634, 0.745471 )
 shape = SubResource( 4 )
 
 [node name="Branch0" type="Sprite" parent="Leaves"]
-position = Vector2( -96.3237, -31.2286 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( -192, -62 )
 texture = ExtResource( 4 )
 
 [node name="Branch1" type="Sprite" parent="Leaves"]
-position = Vector2( 70.7569, -124.94 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 140, -249 )
 texture = ExtResource( 2 )
 
 [node name="Branch2" type="Sprite" parent="Leaves"]
-position = Vector2( 71.6671, 99.1373 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 143, 198 )
 texture = ExtResource( 7 )
 
 [node name="FallingLeaves" type="Node2D" parent="."]

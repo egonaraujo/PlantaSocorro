@@ -20,6 +20,6 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="badge-success" type="Sprite" parent="."]
-position = Vector2( 812, 392 )
-scale = Vector2( 2, 2 )
+position = Vector2( 1616, 800 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )

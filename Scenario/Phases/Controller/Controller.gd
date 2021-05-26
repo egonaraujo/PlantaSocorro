@@ -20,7 +20,6 @@ func _ready():
 	set_process(true)
 	for plant in $Workstation/Plants.get_children():
 		_buffer.push_back("Workstation/Plants/%s" % plant.name)
-		plant.disable()
 	for check in $Bar.get_children():
 		_bar_check.push_front(check)
 		check.undone()
@@ -49,7 +48,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	time_passed = time_passed + delta
+	if ($Workstation.plantAnimState != 0):
+		time_passed = time_passed + delta
 	if time_passed > 90: # one and a half minutes
 		get_tree().change_scene("res://Scenario/Menu/Menu.tscn")
 	
@@ -73,7 +73,6 @@ func _on_Workstation_plant_healthy(plant_name):
 			break
 		else:
 			index = index +1
-	$Workstation/Plants.remove_child(get_node(_tabs[index]))
 	_bar_check[plants_done].done()
 	plants_done = plants_done +1
 	if _buffer.size() > 0:

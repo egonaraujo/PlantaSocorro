@@ -1,5 +1,7 @@
 extends Node2D
 
+export (Vector2)var active_position
+export (Vector2)var active_scale
 
 export (float)var Branches = 0
 export (float)var Fertilizer = 0
@@ -18,7 +20,9 @@ signal plant_sprayed
 var isHolding
 var healthy_emmited = false
 var max_visibility = 0.7
-# Called when the node enters the scene tree for the first time.
+var orig_position
+var orig_scale
+
 func _ready():
 	if(healthy_fertilizer > 0):
 		for flower in $Flowers.get_children():
@@ -40,8 +44,8 @@ func _ready():
 				$Leaves/Colliders.remove_child(branchCol)
 			else:
 				break
-	
-	pass # Replace with function body.
+	orig_position = self.position
+	orig_scale = self.scale
 
 
 func is_healthy():

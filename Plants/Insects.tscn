@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Plants/ass-insetoxhdpi.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+var orig_rotation:float
+var move_arc:float = 15
+
+var current_duration:float
+var anim_duration:float = 0.2
+
+func _ready():
+	orig_rotation = self.get_rotation_degrees()
+	if (orig_rotation - (move_arc/2) < -360 ):
+		orig_rotation = orig_rotation + 360
+	elif (orig_rotation + (move_arc/2) > 360):
+		orig_rotation = orig_rotation -360
+	self.set_rotation_degrees(orig_rotation)
+
+func _physics_process(delta):
+	current_duration = current_duration + delta
+	if (current_duration > anim_duration):
+		current_duration - anim_duration
+	var anim_percentage:float = current_duration/anim_duration
+	self.set_rotation_degrees(calc_rotation(anim_percentage))
+	
+func calc_rotation(percentage:float) -> float:
+	return orig_rotation + (sin(percentage)*move_arc)
+"
+
+[node name="Insects" type="Node2D"]
+
+[node name="ass-insetoxhdpi" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+script = SubResource( 1 )

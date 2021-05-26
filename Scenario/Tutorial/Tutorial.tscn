@@ -1,128 +1,109 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Scenario/Tutorial/Tutorial.gd" type="Script" id=1]
-[ext_resource path="res://Scenario/Tutorial/tela-tutorial-2@4x.png" type="Texture" id=2]
-[ext_resource path="res://Scenario/Tutorial/tela-tutorial-1@4x.png" type="Texture" id=3]
-[ext_resource path="res://Scenario/Tutorial/tela-tutorial-3@4x.png" type="Texture" id=4]
-[ext_resource path="res://Scenario/Tutorial/tela-tutorial-4@4x.png" type="Texture" id=5]
-[ext_resource path="res://Scenario/Tutorial/btn-play@4x.png" type="Texture" id=6]
-[ext_resource path="res://Scenario/Tutorial/hand-tilt.png" type="Texture" id=7]
-[ext_resource path="res://Scenario/Tutorial/hand-stroke.png" type="Texture" id=8]
-[ext_resource path="res://Scenario/Tutorial/hand-upside.png" type="Texture" id=9]
-[ext_resource path="res://Scenario/Tutorial/hand-click.png" type="Texture" id=10]
+[ext_resource path="res://Scenario/Tutorial/ass-risco-lateral@4x.png" type="Texture" id=1]
+[ext_resource path="res://Scenario/Tutorial/ass-hand-lateral@4x.png" type="Texture" id=2]
+[ext_resource path="res://Scenario/Tutorial/ass-click@4x.png" type="Texture" id=3]
+[ext_resource path="res://Scenario/Tutorial/ass-hand@4x.png" type="Texture" id=4]
+[ext_resource path="res://Scenario/Tutorial/tela-tutorial-1@4x.png" type="Texture" id=5]
+[ext_resource path="res://Scenario/Tutorial/tela-tutorial-2@4x.png" type="Texture" id=6]
+[ext_resource path="res://Scenario/Tutorial/btn-play@4x.png" type="Texture" id=7]
+[ext_resource path="res://Scenario/Tutorial/tela-tutorial-3@4x.png" type="Texture" id=8]
+[ext_resource path="res://Scenario/Tutorial/Tutorial.gd" type="Script" id=9]
+[ext_resource path="res://Scenario/Tutorial/tela-tutorial-4@4x.png" type="Texture" id=10]
 [ext_resource path="res://Plants/Cactus/Cactus.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenario/Phases/Workstation/Workstation.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Fonts/Chewy-Regular.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Fonts/Font_Chewy.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Scenario/Phases/Workstation/ps-background.png" type="Texture" id=15]
 
-[sub_resource type="DynamicFont" id=1]
-size = 81
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/Chewy-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 84
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 82
+outline_size = 3
 outline_color = Color( 1, 1, 1, 0 )
 use_filter = true
 font_data = ExtResource( 13 )
 
-[sub_resource type="DynamicFontData" id=2]
-font_path = "res://Fonts/Chewy-Regular.ttf"
-
-[sub_resource type="DynamicFont" id=3]
-size = 42
-outline_color = Color( 1, 1, 1, 0 )
-use_filter = true
-font_data = SubResource( 2 )
-
 [node name="Tutorial" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BGs" type="Node2D" parent="."]
-position = Vector2( -2.15091, 0 )
-scale = Vector2( 1.003, 1.003 )
 
 [node name="tutorial-1" type="Sprite" parent="BGs"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 centered = false
 
 [node name="tutorial-2" type="Sprite" parent="BGs"]
 visible = false
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 centered = false
 
 [node name="tutorial-3" type="Sprite" parent="BGs"]
 visible = false
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="tutorial-4" type="Sprite" parent="BGs"]
 visible = false
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
+texture = ExtResource( 10 )
 centered = false
-
-[node name="ProximoText" type="RichTextLabel" parent="BGs/tutorial-4"]
-margin_left = 2873.0
-margin_top = 1302.22
-margin_right = 3152.0
-margin_bottom = 1420.22
-custom_fonts/normal_font = SubResource( 1 )
-custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
-text = "próximo"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PlayScene" type="Sprite" parent="BGs"]
 visible = false
 self_modulate = Color( 0.388235, 0.388235, 0.470588, 1 )
-position = Vector2( 812.427, 374.344 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
+centered = false
 
 [node name="hand-tilt" type="Sprite" parent="."]
-position = Vector2( 734.927, 509.316 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
+position = Vector2( 1422.63, 1050.37 )
+texture = ExtResource( 2 )
 
 [node name="hand-stroke" type="Sprite" parent="."]
-position = Vector2( 803.537, 451.853 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 8 )
+position = Vector2( 1343.94, 916.784 )
+texture = ExtResource( 1 )
+centered = false
 
 [node name="hand-upside" type="Sprite" parent="."]
 visible = false
-position = Vector2( 800, 555 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+position = Vector2( 1632.77, 1074.13 )
+texture = ExtResource( 4 )
 
 [node name="hand-click" type="Sprite" parent="."]
 visible = false
-position = Vector2( 784, 448 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 10 )
+position = Vector2( 1602.38, 898.439 )
+texture = ExtResource( 3 )
 
 [node name="PracticeTutorial" type="Node2D" parent="."]
 visible = false
-position = Vector2( -2.15091, 0 )
 
 [node name="Workstation" parent="PracticeTutorial" instance=ExtResource( 12 )]
 
 [node name="Cactus" parent="PracticeTutorial/Workstation/Plants" index="0" instance=ExtResource( 11 )]
-position = Vector2( 792, 428 )
+position = Vector2( 1577.52, 879.58 )
+active_position = Vector2( 1577.52, 879.58 )
+active_scale = Vector2( 1, 1 )
 
 [node name="btn-small-play" type="TextureButton" parent="."]
 visible = false
-margin_left = 630.935
-margin_top = 193.0
-margin_right = 1018.94
-margin_bottom = 574.0
-texture_normal = ExtResource( 6 )
+margin_left = 1254.08
+margin_top = 380.742
+margin_right = 1642.08
+margin_bottom = 761.742
+rect_scale = Vector2( 2, 2 )
+texture_normal = ExtResource( 7 )
 expand = true
 stretch_mode = 4
 __meta__ = {
@@ -130,56 +111,70 @@ __meta__ = {
 }
 
 [node name="TextSkip" type="RichTextLabel" parent="."]
-margin_left = 25.0
-margin_top = 15.0
-margin_right = 276.0
-margin_bottom = 178.0
-custom_fonts/normal_font = SubResource( 3 )
+margin_left = 2880.0
+margin_top = 56.0
+margin_right = 3152.0
+margin_bottom = 234.0
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
 meta_underlined = false
-text = "     pular"
+text = "pular"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProximoText" type="RichTextLabel" parent="."]
+margin_left = 2800.0
+margin_top = 1320.0
+margin_right = 3068.0
+margin_bottom = 1438.0
+custom_fonts/normal_font = SubResource( 3 )
+custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
+text = "próximo"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextBack" type="RichTextLabel" parent="."]
-visible = false
-margin_left = 50.0
-margin_top = 650.0
-margin_right = 355.0
-margin_bottom = 751.0
+margin_left = 160.0
+margin_top = 1320.0
+margin_right = 477.0
+margin_bottom = 1447.0
 rect_clip_content = false
 custom_fonts/normal_font = ExtResource( 14 )
 custom_colors/default_color = Color( 1, 0.529412, 0.482353, 1 )
-text = "anterior"
+text = "anterior
+"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Skip" type="TextureButton" parent="."]
-margin_left = 3.0
-margin_top = 5.0
-margin_right = 318.0
-margin_bottom = 132.0
+margin_left = 2697.0
+margin_top = 8.0
+margin_right = 3256.0
+margin_bottom = 246.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Next" type="TextureButton" parent="."]
-margin_left = 1323.0
-margin_top = 587.0
-margin_right = 1624.0
-margin_bottom = 751.0
+margin_left = 2490.0
+margin_top = 1247.0
+margin_right = 3258.0
+margin_bottom = 1504.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Previsous" type="TextureButton" parent="."]
 margin_left = 6.0
-margin_top = 635.0
-margin_right = 310.0
-margin_bottom = 747.0
+margin_top = 1276.0
+margin_right = 534.0
+margin_bottom = 1498.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

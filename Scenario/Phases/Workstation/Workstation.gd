@@ -12,17 +12,22 @@ enum Tools {NONE=-1, FERTILIZER=0, SHEARS, WATERCAN, BUGSPRAY,}
 var whichTool = Tools.NONE
 var isHolding = false
 var slashedIndex = -1
+var isSelectionTap = false
 
 var FertilizerParticleNodes
 
 #PlantScene
 var _activePlant
+var _oldPlant
+var plantAnimState
+var plantTimer
 
 var trailRemoverTimer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	FertilizerParticleNodes = []
 	_activePlant = null
+	_oldPlant = null
 	$Fertilizer.connect("tool_selected", self, "selectTool")
 	$Shears.connect("tool_selected", self, "selectTool")
 	$Watercan.connect("tool_selected", self, "selectTool")
@@ -35,6 +40,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if plantAnimState != 0:
+		plantTimer += delta
+		animPlant()
+		return
 	if(isHolding && _activePlant != null 
 	&& (whichTool ==2 || whichTool ==3)):
 		update_plant(_activePlant,whichTool, delta)
@@ -54,6 +63,12 @@ func _process(delta):
 
 func _input(event):
 	#Animation of tools
+	if (event is InputEventScreenTouch):
+		if(!event.is_pressed()):
+			isSelectionTap = false
+	
+	if(isSelectionTap):
+		return	
 	showToolAnimation(event)
 
 	if (event is InputEventScreenTouch):
@@ -105,6 +120,7 @@ func update_plant(plant, status_id, increment):
 
 
 func selectTool(var i):
+	isSelectionTap = true
 	whichTool=i;
 	$Fertilizer.unselect()
 	$Shears.unselect()
@@ -167,19 +183,19 @@ func showToolAnimation(event):
 					$AudioStreamPlayer.play()
 
 func updateEffectAndSound(event, particles : Particles2D ,sound):
-			if( event is InputEventScreenDrag):
-				if(particles != null):
-					particles.position = event.position
-			if( event is InputEventScreenTouch):
-				if(particles != null):
-					particles.emitting = event.is_pressed()
-					particles.position = event.position
-				if (event.is_pressed()):
-					$AudioStreamPlayer.stop()
-					$AudioStreamPlayer.set_stream(sound)
-					$AudioStreamPlayer.play()
-				else:
-					$AudioStreamPlayer.stop()
+	if( event is InputEventScreenDrag):
+		if(particles != null):
+			particles.position = event.position
+	if( event is InputEventScreenTouch):
+		if(particles != null):
+			particles.emitting = event.is_pressed()
+			particles.position = event.position
+		if (event.is_pressed()):
+			$AudioStreamPlayer.stop()
+			$AudioStreamPlayer.set_stream(sound)
+			$AudioStreamPlayer.play()
+		else:
+			$AudioStreamPlayer.stop()
 
 func disableEffects():
 	$AudioStreamPlayer.stop()
@@ -187,7 +203,10 @@ func disableEffects():
 	$WaterParticles2D.emitting = false
 
 func setActivePlant(plant:Node2D):
+	_oldPlant = _activePlant
 	_activePlant = plant
+	plantAnimState = 1 if _oldPlant != null else 2
+	plantTimer = 0
 	_activePlant.connect("plant_watered", self, "plant_watered")
 	_activePlant.connect("plant_slashed", self, "plant_slashed")
 	_activePlant.connect("plant_flowered", self, "plant_flowered")
@@ -196,6 +215,43 @@ func setActivePlant(plant:Node2D):
 	$BugSpray.required(true)
 	$Shears.required(true)
 	$Watercan.required(true)
+
+func animPlant():
+	#plantTimer is percent, between 0 and 1
+	var finalPos
+	var finalScale
+	var finalPlant
+	if plantAnimState == 1:
+		_setPlantPositionPercent(_oldPlant, plantTimer, _oldPlant.active_position,
+			_oldPlant.orig_position)
+		_setPlantScalePercent(_oldPlant, plantTimer, _oldPlant.active_scale,
+			_oldPlant.orig_scale)
+
+		finalPos =_oldPlant.orig_position
+		finalScale = _oldPlant.orig_scale
+		finalPlant = _oldPlant
+	if plantAnimState == 2:
+		_setPlantPositionPercent(_activePlant, plantTimer,
+			 _activePlant.orig_position, _activePlant.active_position)
+		_setPlantScalePercent(_activePlant, plantTimer,
+			_activePlant.orig_scale,_activePlant.active_scale)
+		finalPos =_activePlant.active_position
+		finalScale = _activePlant.active_scale
+		finalPlant = _activePlant
+	
+	if plantTimer > 1:
+		finalPlant.position =finalPos
+		finalPlant.scale = finalScale
+		plantTimer =0
+		plantAnimState+=1
+		if plantAnimState > 2:
+			plantAnimState =0
+
+func _setPlantPositionPercent(var plant:Node2D, var percent, var start, var end):
+	plant.position = start + (percent*(end-start))
+
+func _setPlantScalePercent(var plant:Node2D, var percent, var start, var end):
+	plant.scale = start + (percent*(end-start))
 
 func plant_watered():
 	$Watercan.required(false)

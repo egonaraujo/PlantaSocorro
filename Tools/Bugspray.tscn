@@ -7,11 +7,11 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
-shader_param/outline_width = 2.0
 shader_param/outline_color = null
+shader_param/enabled = true
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 76.2425, 164.044 )
+extents = Vector2( 152, 328 )
 
 [node name="Bugspray" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,17 +20,17 @@ tool_asset = NodePath("ass-bugspray")
 
 [node name="highlight" type="Sprite" parent="."]
 position = Vector2( 1.18808, -0.190737 )
-scale = Vector2( 2.47688, 2.47688 )
+scale = Vector2( 4.9, 4.9 )
 texture = ExtResource( 3 )
 
 [node name="ass-bugspray" type="Sprite" parent="."]
 material = SubResource( 1 )
 position = Vector2( -8.12253, -10.7013 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0.367523, -8.09334 )
+position = Vector2( 12.6109, -9.45372 )
 shape = SubResource( 2 )

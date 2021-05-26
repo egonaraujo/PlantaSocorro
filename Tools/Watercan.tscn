@@ -7,11 +7,11 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
-shader_param/outline_width = 2.0
 shader_param/outline_color = null
+shader_param/enabled = true
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 180.071, 129.862 )
+extents = Vector2( 360, 258 )
 
 [node name="Watercan" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,13 +20,13 @@ tool_asset = NodePath("ass-watercan")
 
 [node name="highlight" type="Sprite" parent="."]
 position = Vector2( 8.58929, 1 )
-scale = Vector2( 3.2, 3.2 )
+scale = Vector2( 6.4, 6.4 )
 texture = ExtResource( 3 )
 
 [node name="ass-watercan" type="Sprite" parent="."]
 material = SubResource( 1 )
 position = Vector2( -32.8218, -13.2684 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -10,52 +10,52 @@
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -3248.0
+margin_bottom = -1500.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background" type="TextureRect" parent="."]
-margin_left = -1.0
-margin_top = -1.0
-margin_right = 3249.0
-margin_bottom = 1501.0
-rect_scale = Vector2( 0.501, 0.501 )
+margin_left = -2.0
+margin_top = -2.0
+margin_right = 3252.0
+margin_bottom = 1502.0
 texture = ExtResource( 4 )
 expand = true
-stretch_mode = 3
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Play" type="TextureButton" parent="."]
-margin_left = 601.606
-margin_top = 536.828
-margin_right = 1425.61
-margin_bottom = 900.828
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 1190.43
+margin_top = 1103.35
+margin_right = 2014.44
+margin_bottom = 1467.35
 texture_normal = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Credits" type="TextureButton" parent="."]
-margin_left = 1365.56
-margin_top = 26.2893
-margin_right = 1729.57
-margin_bottom = 390.289
-rect_scale = Vector2( 0.5, 0.5 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 2752.0
+margin_top = 64.0
+margin_right = 3116.01
+margin_bottom = 428.0
 texture_normal = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GodotLogo" type="TextureRect" parent="."]
-margin_left = 78.9179
-margin_top = 80.0243
-margin_right = 582.919
-margin_bottom = 257.024
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 632.001
+margin_bottom = 305.0
 texture = ExtResource( 5 )
 stretch_mode = 1
 __meta__ = {
@@ -63,11 +63,10 @@ __meta__ = {
 }
 
 [node name="GGJLogo" type="TextureRect" parent="."]
-margin_left = 89.0059
-margin_top = 196.754
-margin_right = 336.007
-margin_bottom = 443.754
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 128.0
+margin_top = 384.0
+margin_right = 375.001
+margin_bottom = 631.0
 texture = ExtResource( 2 )
 stretch_mode = 1
 __meta__ = {
