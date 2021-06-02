@@ -217,28 +217,28 @@ func setActivePlant(plant:Node2D):
 	$Watercan.required(true)
 
 func animPlant():
-	#plantTimer is percent, between 0 and 1
+	# states: 1- leaving old 2- entering new
+	# plantTimer is percent, between 0 and 1
 	var finalPos
 	var finalScale
 	var finalPlant
-	if plantAnimState == 1:
-		_setPlantPositionPercent(_oldPlant, plantTimer, _oldPlant.active_position,
-			_oldPlant.orig_position)
-		_setPlantScalePercent(_oldPlant, plantTimer, _oldPlant.active_scale,
-			_oldPlant.orig_scale)
+	var percent = _easeInOut(plantTimer)
 
+	if plantAnimState == 1:
 		finalPos =_oldPlant.orig_position
 		finalScale = _oldPlant.orig_scale
 		finalPlant = _oldPlant
 	if plantAnimState == 2:
-		_setPlantPositionPercent(_activePlant, plantTimer,
-			 _activePlant.orig_position, _activePlant.active_position)
-		_setPlantScalePercent(_activePlant, plantTimer,
-			_activePlant.orig_scale,_activePlant.active_scale)
-		finalPos =_activePlant.active_position
+		finalPos = _activePlant.active_position
 		finalScale = _activePlant.active_scale
 		finalPlant = _activePlant
-	
+		percent = 1-percent # direction of motion swapped
+
+	_setPlantPositionPercent(finalPlant, percent, finalPlant.active_position,
+		finalPlant.orig_position)
+	_setPlantScalePercent(finalPlant, percent, finalPlant.active_scale,
+		finalPlant.orig_scale)
+
 	if plantTimer > 1:
 		finalPlant.position =finalPos
 		finalPlant.scale = finalScale
@@ -246,6 +246,12 @@ func animPlant():
 		plantAnimState+=1
 		if plantAnimState > 2:
 			plantAnimState =0
+
+func _easeInOut(var percent:float) -> float:
+	if (percent < 0.5):
+		return 4 * pow(percent, 3)
+	else:
+		return 1 - pow(-2 * percent + 2, 3) / 2
 
 func _setPlantPositionPercent(var plant:Node2D, var percent, var start, var end):
 	plant.position = start + (percent*(end-start))

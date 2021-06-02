@@ -48,9 +48,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if ($Workstation.plantAnimState != 0):
+	if ($Workstation.plantAnimState == 0):
 		time_passed = time_passed + delta
 	if time_passed > 90: # one and a half minutes
+		if (GameControllerSingleton.IsHighScoreAndSave()):
+			print("yay highscore ", GameControllerSingleton.GetHighScore() )
 		get_tree().change_scene("res://Scenario/Menu/Menu.tscn")
 	
 	var per_cent = 1-((90-time_passed)/90)
@@ -67,6 +69,7 @@ func select_tab(i):
 
 func _on_Workstation_plant_healthy(plant_name):
 	var index = 0
+	GameControllerSingleton.AddActualScore(time_passed)
 
 	for name in _tabs:
 		if "Workstation/Plants/%s"% plant_name == name:
@@ -84,6 +87,7 @@ func _on_Workstation_plant_healthy(plant_name):
 	for name in _tabs:
 		if ""!= name:
 			return
+	GameControllerSingleton.AddActualScore((90-time_passed) * 4)
 	$Workstation.disableEffects()
 	get_tree().change_scene_to(next)
 	pass # Replace with function body.

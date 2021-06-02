@@ -22,6 +22,7 @@ config/icon="res://Icons/planta-xxxhdpi.png"
 [autoload]
 
 MusicController="*res://MusicController/MusicControllerSingleton.tscn"
+GameControllerSingleton="*res://GameController/GameControllerSingleton.tscn"
 
 [display]
 
