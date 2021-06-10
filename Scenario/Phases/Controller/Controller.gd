@@ -50,7 +50,7 @@ func _ready():
 func _process(delta):
 	if ($Workstation.plantAnimState == 0):
 		time_passed = time_passed + delta
-	if time_passed > 90: # one and a half minutes
+	if time_passed > 80: # one and a half minutes, minus 10 seconds of estimated plant animation
 		if (GameControllerSingleton.IsHighScoreAndSave()):
 			print("yay highscore ", GameControllerSingleton.GetHighScore() )
 		get_tree().change_scene("res://Scenario/Menu/Menu.tscn")
@@ -69,7 +69,7 @@ func select_tab(i):
 
 func _on_Workstation_plant_healthy(plant_name):
 	var index = 0
-	GameControllerSingleton.AddActualScore(time_passed)
+	GameControllerSingleton.AddScoreForLevel(time_passed,level)
 
 	for name in _tabs:
 		if "Workstation/Plants/%s"% plant_name == name:
@@ -87,7 +87,7 @@ func _on_Workstation_plant_healthy(plant_name):
 	for name in _tabs:
 		if ""!= name:
 			return
-	GameControllerSingleton.AddActualScore((90-time_passed) * 4)
+	GameControllerSingleton.AddScoreForLevel((90-time_passed) * 4,level)
 	$Workstation.disableEffects()
 	get_tree().change_scene_to(next)
 	pass # Replace with function body.
